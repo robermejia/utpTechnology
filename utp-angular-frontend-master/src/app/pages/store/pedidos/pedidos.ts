@@ -37,7 +37,7 @@ import { PagarPedidoModalComponent } from './pagar-pedido-modal/pagar-pedido-mod
   templateUrl: './pedidos.html',
   styleUrl: './pedidos.css',
 })
-export class Pedidos implements AfterViewInit, OnDestroy {
+export class PedidosStoreComponent implements AfterViewInit, OnDestroy {
   private readonly subscription = new Subscription();
   public isLoading = true;
   public resultsLength = 0;

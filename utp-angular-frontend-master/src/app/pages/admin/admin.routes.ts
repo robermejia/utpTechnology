@@ -11,7 +11,7 @@ export const adminRoutes: Routes = [
   {
     path: 'pedidos',
     loadComponent: () =>
-      import('./pedidos-list/pedidos-list').then((m) => m.PedidosList),
+      import('./pedidos-list/pedidos-list').then((m) => m.PedidosAdminComponent),
   },
   {
     path: 'clientes',

@@ -22,12 +22,12 @@ export const routes: Routes = [
   {
     path: 'productos',
     loadComponent: () =>
-      import('./pages/store/productos/productos').then((m) => m.Productos),
+      import('./pages/store/productos/productos').then((m) => m.ProductosStoreComponent),
   },
   {
     path: 'pedidos',
     loadComponent: () =>
-      import('./pages/store/pedidos/pedidos').then((m) => m.Pedidos),
+      import('./pages/store/pedidos/pedidos').then((m) => m.PedidosStoreComponent),
   },
   {
     path: 'carrito-compras',

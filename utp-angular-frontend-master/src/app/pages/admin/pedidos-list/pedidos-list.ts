@@ -24,7 +24,7 @@ import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
   templateUrl: './pedidos-list.html',
   styleUrl: './pedidos-list.css',
 })
-export class PedidosList implements AfterViewInit, OnDestroy {
+export class PedidosAdminComponent implements AfterViewInit, OnDestroy {
   private readonly subscription = new Subscription();
   public isLoading = true;
   public resultsLength = 0;

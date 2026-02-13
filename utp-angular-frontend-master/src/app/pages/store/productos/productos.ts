@@ -40,7 +40,7 @@ import { HeaderToolbarComponent } from "../../shared/header-toolbar/header-toolb
   templateUrl: './productos.html',
   styleUrl: './productos.css',
 })
-export class Productos implements OnInit, OnDestroy {
+export class ProductosStoreComponent implements OnInit, OnDestroy {
   private readonly subscription = new Subscription();
 
   public isLoading = true;
