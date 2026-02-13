@@ -1,10 +1,15 @@
 [DEPLOYMENT NOTICE]
 
-¡Solucionado! He limpiado el historial y configurado la app para usar el archivo secreto en Render.
+¡Hemos avanzado! El despliegue anterior paso a la fase de ejecución, lo cual es excelente. 🎉
 
-**Pasos Finales:**
+El nuevo error (`GdchCredentials`) se debe a un **conflicto de versiones**:
+Teníamos una versión muy nueva de `google-cloud-firestore` (3.21.0) chocando con la librería interna de `firebase-admin`.
+
+**Solución Implementada:**
+He eliminado la dependencia conflictiva en el `pom.xml` para que `firebase-admin` use su propia versión compatible.
+
+**Pasos a seguir:**
 1. Ve a Render.
-2. Asegúrate de que tu "Secret File" en Render se llame exactamente `service-account.json`. (`/etc/secrets/service-account.json`).
-3. **Manual Deploy** -> **Deploy latest commit** (el commit debe decir: *"feat: Configure Firebase to load credentials from Render secret file"*).
+2. **Manual Deploy** -> **Deploy latest commit** (el commit debe decir: *"fix: Remove conflicting google-cloud-firestore dependency to resolve GdchCredentials error"*).
 
-Ahora tu aplicación buscará las credenciales de forma segura. ¡Debería funcionar! 🎉
+Esto debería alinear todas las bibliotecas de Google y permitir que la aplicación arranque correctamente. 🛠️

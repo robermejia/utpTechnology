@@ -1,5 +1,5 @@
 export const environment = {
-    apiUrl: 'PLACEHOLDER_BACKEND_URL',
+    apiUrl: 'https://utptechnology.onrender.com/api/v1',
     firebaseConfig: {
         apiKey: "AIzaSyCu7XWP1IwudAhQPWhkTE2HTXbVNDUTVg0",
         authDomain: "utptechnology.firebaseapp.com",
