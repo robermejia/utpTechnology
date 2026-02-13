@@ -24,7 +24,7 @@ export class PagarPedidoModalComponent {
     private pedidoService: PedidoService
   ) { }
 
-  pagar() {
+  public pagar() {
     this.pedidoService.pagar(this.data.pedido.id).subscribe({
       next: (res) => {
         window.alert(res.message);

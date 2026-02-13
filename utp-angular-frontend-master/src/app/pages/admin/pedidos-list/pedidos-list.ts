@@ -26,10 +26,10 @@ import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
 })
 export class PedidosList implements AfterViewInit, OnDestroy {
   private readonly subscription = new Subscription();
-  isLoading = true;
-  resultsLength = 0;
-  sortOrder?: string;
-  sortBy?: string;
+  public isLoading = true;
+  public resultsLength = 0;
+  public sortOrder?: string;
+  public sortBy?: string;
 
   columns = [
     'id',
@@ -41,7 +41,7 @@ export class PedidosList implements AfterViewInit, OnDestroy {
     // 'acciones',
   ];
 
-  readonly dataSource = new MatTableDataSource<ListPedidoAdminDto>();
+  public readonly dataSource = new MatTableDataSource<ListPedidoAdminDto>();
 
   @ViewChild(MatPaginator)
   readonly paginator!: MatPaginator;

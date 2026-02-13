@@ -43,15 +43,15 @@ import { HeaderToolbarComponent } from "../../shared/header-toolbar/header-toolb
 export class Productos implements OnInit, OnDestroy {
   private readonly subscription = new Subscription();
 
-  isLoading = true;
-  busqueda: string = '';
-  resultsLength = 0;
-  pageSize = 16;
-  pageIndex = 0;
+  public isLoading = true;
+  public busqueda: string = '';
+  public resultsLength = 0;
+  public pageSize = 16;
+  public pageIndex = 0;
 
-  products: ProductoListDto[] = [];
+  public products: ProductoListDto[] = [];
 
-  busquedaControl = new FormControl('');
+  public busquedaControl = new FormControl('');
 
   @ViewChild(MatPaginator)
   readonly paginator!: MatPaginator;
@@ -74,7 +74,7 @@ export class Productos implements OnInit, OnDestroy {
     );
   }
 
-  handlePageEvent(e: PageEvent) {
+  public handlePageEvent(e: PageEvent) {
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
     this.listProducts();
@@ -101,7 +101,7 @@ export class Productos implements OnInit, OnDestroy {
     );
   }
 
-  addProduct(producto: ProductoListDto) {
+  public addProduct(producto: ProductoListDto) {
     this.carritoComprasService.addProduct(producto, 1, true);
     window.alert('Producto agregado al carrito');
   }

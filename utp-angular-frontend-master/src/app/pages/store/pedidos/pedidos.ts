@@ -39,14 +39,14 @@ import { PagarPedidoModalComponent } from './pagar-pedido-modal/pagar-pedido-mod
 })
 export class Pedidos implements AfterViewInit, OnDestroy {
   private readonly subscription = new Subscription();
-  isLoading = true;
-  resultsLength = 0;
-  sortOrder?: string;
-  sortBy?: string;
+  public isLoading = true;
+  public resultsLength = 0;
+  public sortOrder?: string;
+  public sortBy?: string;
 
   columns = ['id', 'fecha', 'estado', 'total', 'acciones'];
 
-  readonly dataSource = new MatTableDataSource<ListPedidoDto>();
+  public readonly dataSource = new MatTableDataSource<ListPedidoDto>();
 
   @ViewChild(MatPaginator)
   readonly paginator!: MatPaginator;
@@ -102,22 +102,11 @@ export class Pedidos implements AfterViewInit, OnDestroy {
     this.paginator.page.emit();
   }
 
-  verDetallesPedido(pedido: ListPedidoDto): void {
-    this.pedidoService.verDetalles(pedido.id).subscribe({
-      next: (res) => {
-        this.dialog.open<DetallePedidoModalComponent, DetallePedidoModalData>(
-          DetallePedidoModalComponent,
-          { data: { pedido, detalles: res.data } }
-        );
-      },
-    });
-  }
-
-  descargarComprobante(pedido: ListPedidoDto): void {
+  public descargarComprobante(pedido: ListPedidoDto): void {
     this.pedidoService.descargarComprobante(pedido.id);
   }
 
-  pagarPedido(pedido: ListPedidoDto): void {
+  public pagarPedido(pedido: ListPedidoDto): void {
     this.pedidoService.verDetalles(pedido.id).subscribe({
       next: (res) => {
         this.dialog
@@ -132,13 +121,24 @@ export class Pedidos implements AfterViewInit, OnDestroy {
     });
   }
 
-  anularPedido(pedido: ListPedidoDto): void {
+  public anularPedido(pedido: ListPedidoDto): void {
     let confirm = window.confirm('¿Seguro de anular el pedido?');
     if (!confirm) return;
     this.pedidoService.anular(pedido.id).subscribe({
       next: (res) => {
         window.alert(res.message);
         this.paginator.page.emit();
+      },
+    });
+  }
+
+  public verDetallesPedido(pedido: ListPedidoDto): void {
+    this.pedidoService.verDetalles(pedido.id).subscribe({
+      next: (res) => {
+        this.dialog.open<DetallePedidoModalComponent, DetallePedidoModalData>(
+          DetallePedidoModalComponent,
+          { data: { pedido, detalles: res.data } }
+        );
       },
     });
   }

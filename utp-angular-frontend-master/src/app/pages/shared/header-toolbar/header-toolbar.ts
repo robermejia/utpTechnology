@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -20,6 +20,8 @@ import { LoggedUser } from '../../../models/auth.model';
   styleUrl: './header-toolbar.css',
 })
 export class HeaderToolbarComponent implements OnInit {
+  @ViewChild('menu') public menu!: MatMenu;
+
   public user?: LoggedUser = undefined;
   public isLogged: boolean = false;
   public isAdmin: boolean = false;
@@ -38,7 +40,7 @@ export class HeaderToolbarComponent implements OnInit {
     }
   }
 
-  logout(): void {
+  public logout(): void {
     this.authService.logout();
     this.user = undefined;
     this.isLogged = false;
