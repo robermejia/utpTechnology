@@ -6,14 +6,14 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
 RUN if [ -z "$BUILD" ]; then \
-        npm run build -- --configuration production; \
+    npm run build -- --configuration production; \
     else \
-        npm run build -- --configuration ${BUILD}; \
+    npm run build -- --configuration ${BUILD}; \
     fi
 
 

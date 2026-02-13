@@ -1,15 +1,18 @@
 [DEPLOYMENT NOTICE]
 
-¡Hemos avanzado! El despliegue anterior paso a la fase de ejecución, lo cual es excelente. 🎉
+¡Backend desplegado! 🚀
 
-El nuevo error (`GdchCredentials`) se debe a un **conflicto de versiones**:
-Teníamos una versión muy nueva de `google-cloud-firestore` (3.21.0) chocando con la librería interna de `firebase-admin`.
+Ahora toca el **Frontend (Angular)**. He actualizado el archivo `environment.prod.ts` para que apunte a tu nuevo backend (`https://utptechnology.onrender.com/api/v1`).
 
-**Solución Implementada:**
-He eliminado la dependencia conflictiva en el `pom.xml` para que `firebase-admin` use su propia versión compatible.
+**Pasos para desplegar el Frontend:**
 
-**Pasos a seguir:**
-1. Ve a Render.
-2. **Manual Deploy** -> **Deploy latest commit** (el commit debe decir: *"fix: Remove conflicting google-cloud-firestore dependency to resolve GdchCredentials error"*).
+1.  En Render, crea un nuevo **Web Service**.
+2.  Conecta el mismo repositorio (`utpTechnology`).
+3.  **Configuración:**
+    *   **Name:** `utp-frontend` (o el que quieras).
+    *   **Root Directory:** `utp-angular-frontend-master`
+    *   **Runtime:** `Docker`
+    *   **Region:** La misma que el backend (recomendado).
+4.  Dale a **Create Web Service**.
 
-Esto debería alinear todas las bibliotecas de Google y permitir que la aplicación arranque correctamente. 🛠️
+¡Y listo! Cuando termine, Render te dará una URL para ver tu página web funcionando. 🌐
