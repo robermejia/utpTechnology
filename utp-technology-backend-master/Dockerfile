@@ -7,6 +7,7 @@ COPY .mvn/wrapper/maven-wrapper.properties /app/.mvn/wrapper/maven-wrapper.prope
 WORKDIR /app
 
 # Descargando dependencias
+RUN chmod +x mvnw
 RUN ./mvnw package || echo "Dependencies downloaded."
 
 # Compilando app
