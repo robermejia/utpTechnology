@@ -11,7 +11,7 @@ import {
 } from '../../../models/carrito-compras';
 import { AuthService } from '../../../services/auth.service';
 import { CarritoComprasService } from '../../../services/carrito-compras.service';
-import { HeaderToolbar } from '../../shared/header-toolbar/header-toolbar';
+import { HeaderToolbarFinalComponent } from '../../shared/header-toolbar/header-toolbar';
 import { StorePedidoDto } from '../../../models/pedido';
 import { PedidoService } from '../../../services/pedido.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,7 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-    HeaderToolbar,
+    HeaderToolbarFinalComponent,
   ],
   templateUrl: './carrito-compras.html',
   styleUrl: './carrito-compras.css',
@@ -44,7 +44,7 @@ export class CarritoCompras implements OnInit {
     private carritoComprasService: CarritoComprasService,
     private pedidoService: PedidoService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadData();

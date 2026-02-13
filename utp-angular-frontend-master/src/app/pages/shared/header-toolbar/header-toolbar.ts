@@ -8,7 +8,7 @@ import { AuthService } from '../../../services/auth.service';
 import { LoggedUser } from '../../../models/auth.model';
 
 @Component({
-  selector: 'app-header-toolbar',
+  selector: 'app-header-toolbar-v2',
   imports: [
     RouterLink,
     MatToolbarModule,
