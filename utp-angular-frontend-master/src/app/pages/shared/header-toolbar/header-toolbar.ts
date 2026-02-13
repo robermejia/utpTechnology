@@ -16,7 +16,77 @@ import { LoggedUser } from '../../../models/auth.model';
     MatMenuModule,
     MatIconModule,
   ],
-  templateUrl: './header-toolbar.html',
+  template: `
+<nav class="glass-effect sticky top-0 z-50 px-6 py-4 flex justify-between items-center mb-10">
+  <div class="flex items-center gap-8">
+    <a routerLink="/" class="flex items-center">
+      <div class="relative group">
+        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-amber-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+        <img src="assets/images/logo.jpg" alt="UTP LOGO" class="relative h-14 rounded-full border border-white/10">
+      </div>
+    </a>
+
+    @if (isAdmin) {
+    <div class="hidden md:flex items-center gap-4">
+      <a routerLink="/admin/productos" routerLinkActive="text-blue-400" class="text-slate-300 hover:text-white transition-colors font-medium px-3 py-2 rounded-lg hover:bg-white/5">Productos</a>
+      <a routerLink="/admin/clientes" routerLinkActive="text-blue-400" class="text-slate-300 hover:text-white transition-colors font-medium px-3 py-2 rounded-lg hover:bg-white/5">Clientes</a>
+      <a routerLink="/admin/pedidos" routerLinkActive="text-blue-400" class="text-slate-300 hover:text-white transition-colors font-medium px-3 py-2 rounded-lg hover:bg-white/5">Pedidos</a>
+    </div>
+    }
+  </div>
+
+  <div class="flex items-center gap-4">
+    <button [matMenuTriggerFor]="menu" class="glass-card p-2 rounded-xl border border-white/10 hover:border-blue-500/50 transition-all active:scale-95">
+      <mat-icon class="text-blue-400">menu</mat-icon>
+    </button>
+  </div>
+
+  <mat-menu #menu="matMenu" class="glass-effect !bg-slate-900/90 !border-white/10">
+    @if (isLogged) {
+      @if (isCustomer) {
+        <button mat-menu-item routerLink="/pedidos">
+          <mat-icon class="text-slate-400">history</mat-icon>
+          <span class="text-slate-200">Mis Pedidos</span>
+        </button>
+      } @else {
+        <button mat-menu-item routerLink="/admin/productos">
+          <mat-icon class="text-slate-400">inventory_2</mat-icon>
+          <span class="text-slate-200">Admin Productos</span>
+        </button>
+        <button mat-menu-item routerLink="/admin/clientes">
+          <mat-icon class="text-slate-400">people</mat-icon>
+          <span class="text-slate-200">Admin Clientes</span>
+        </button>
+        <button mat-menu-item routerLink="/admin/pedidos">
+          <mat-icon class="text-slate-400">receipt_long</mat-icon>
+          <span class="text-slate-200">Admin Pedidos</span>
+        </button>
+      }
+    }
+
+    @if (isCustomer) {
+      <button mat-menu-item routerLink="/carrito-compras">
+        <mat-icon class="text-slate-400">shopping_cart</mat-icon>
+        <span class="text-slate-200">Ver Carrito</span>
+      </button>
+    }
+
+    <div class="h-[1px] bg-white/10 my-1 mx-3"></div>
+
+    @if (!isLogged) {
+      <button mat-menu-item routerLink="/login">
+        <mat-icon class="text-blue-400">login</mat-icon>
+        <span class="text-blue-200 font-semibold">Iniciar Sesión</span>
+      </button>
+    } @else {
+      <button mat-menu-item (click)="logout()">
+        <mat-icon class="text-rose-400">logout</mat-icon>
+        <span class="text-rose-200">Cerrar Sesión</span>
+      </button>
+    }
+  </mat-menu>
+</nav>
+  `,
   styleUrl: './header-toolbar.css',
 })
 export class HeaderToolbarComponent implements OnInit {
