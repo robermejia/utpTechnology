@@ -21,7 +21,7 @@ import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { ProductoListDto } from '../../../models/producto.model';
 import { CarritoComprasService } from '../../../services/carrito-compras.service';
 import { ProductoService } from '../../../services/producto.service';
-import { HeaderToolbarComponent } from "../../shared/header-toolbar/header-toolbar";
+import { HeaderToolbarFinalComponent } from "../../shared/header-toolbar/header-toolbar";
 
 @Component({
   selector: 'app-productos',
@@ -35,7 +35,7 @@ import { HeaderToolbarComponent } from "../../shared/header-toolbar/header-toolb
     MatInputModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    HeaderToolbarComponent
+    HeaderToolbarFinalComponent
   ],
   templateUrl: './productos.html',
   styleUrl: './productos.css',

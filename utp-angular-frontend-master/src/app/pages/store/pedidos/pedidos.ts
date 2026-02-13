@@ -14,7 +14,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { startWith, Subscription, switchMap } from 'rxjs';
 import { ListPedidoDto } from '../../../models/pedido';
 import { PedidoService } from '../../../services/pedido.service';
-import { HeaderToolbarComponent } from '../../shared/header-toolbar/header-toolbar';
+import { HeaderToolbarFinalComponent } from '../../shared/header-toolbar/header-toolbar';
 import {
   DetallePedidoModalComponent,
   DetallePedidoModalData,
@@ -32,7 +32,7 @@ import { PagarPedidoModalComponent } from './pagar-pedido-modal/pagar-pedido-mod
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    HeaderToolbarComponent,
+    HeaderToolbarFinalComponent,
   ],
   templateUrl: './pedidos.html',
   styleUrl: './pedidos.css',
