@@ -5,16 +5,17 @@
 <img src="https://i.ibb.co/VjJkQwz/Captura-de-pantalla-2025-01-07-154518.png" style="width: 100% ; aspect-ratio:16/9">
 </center>
 
-# Sistema de Gestión de Ventas UTP Technology
+# UTP Technology: Premium Sales Management System
 
-Este es un proyecto full stack desarrollado con **Spring Boot** en el backend, **Angular 20** en el frontend y **MySQL** como base de datos. El sistema permite gestionar productos, clientes, usuarios, pedidos y comprobantes.
+This is a premium, full-stack application transformed with a state-of-the-art **Glassmorphism UI** and a scalable **Firebase Firestore** backend. 
 
-## 📌 Tecnologías utilizadas
+## 📌 Technologies
 
-- **Frontend:** Angular 20, TypeScript,
-- **Backend:** Spring Boot, Spring Data JPA, Spring Security, JWT
-- **Base de datos:** MySQL
-- **Otros:** REST API, Maven
+- **Frontend:** Angular 20, TypeScript, Tailwind CSS (Custom Design System)
+- **Backend:** Spring Boot, Firebase Admin SDK (Cloud Firestore)
+- **Database:** Firebase Firestore (NoSQL)
+- **UI/UX:** Premium Glassmorphism, Material Icons, 'Outfit' Typography
+- **Security:** JWT Authentication (Firebase Auth ready)
 
 ## 🧩 Estructura de la base de datos
 
