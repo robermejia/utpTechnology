@@ -12,6 +12,7 @@ RUN ./mvnw package || echo "Dependencies downloaded."
 
 # Compilando app
 COPY . /app/
+RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 FROM eclipse-temurin:21-jre-alpine AS production
