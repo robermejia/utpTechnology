@@ -1,0 +1,38 @@
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Node
+node_modules/
+dist/
+.angular/
+.npm/
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/
+mvnw
+mvnw.cmd
+.factorypath
+
+# Firebase / Secret
+service-account.json
+*.json
+!utp-angular-frontend-master/package.json
+!utp-angular-frontend-master/tsconfig*.json
+!utp-angular-frontend-master/angular.json
+!utp-technology-backend-master/pom.xml
+
+# Logs
+*.log
+logs/

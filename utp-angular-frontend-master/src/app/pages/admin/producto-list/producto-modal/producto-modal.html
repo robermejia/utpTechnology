@@ -1,0 +1,78 @@
+<div class="p-6 bg-[#0f172a] text-white rounded-2xl border border-white/10 shadow-2xl">
+  <h2 mat-dialog-title class="text-3xl font-black text-center mb-6 tracking-tight uppercase bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+    {{ title }}
+  </h2>
+
+  <mat-dialog-content class="!p-0 !overflow-visible">
+    <div [formGroup]="formGroup" class="grid grid-cols-1 gap-6 w-[450px]">
+      <!-- Nombre -->
+      <div class="group">
+        <label class="text-slate-400 text-xs font-bold uppercase tracking-widest pl-1 mb-2 block group-focus-within:text-blue-400 transition-colors">
+          Nombre del Producto
+        </label>
+        <div class="relative">
+          <mat-icon class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg h-5 w-5">inventory_2</mat-icon>
+          <input matInput formControlName="nombre" 
+                 class="w-full bg-slate-900/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-blue-500/50 transition-all">
+        </div>
+      </div>
+
+      <!-- Imagen URL -->
+      <div class="group">
+        <label class="text-slate-400 text-xs font-bold uppercase tracking-widest pl-1 mb-2 block group-focus-within:text-blue-400 transition-colors">
+          URL de la Imagen
+        </label>
+        <div class="relative">
+          <mat-icon class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg h-5 w-5">image</mat-icon>
+          <input matInput formControlName="imagen" (blur)="onImageInputBlur()"
+                 class="w-full bg-slate-900/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-blue-500/50 transition-all">
+        </div>
+      </div>
+
+      @if (validImageUrl !== undefined) {
+      <div class="p-2 glass-card rounded-xl border-white/5 flex justify-center">
+        <img [src]="validImageUrl" alt="Vista previa" 
+             class="max-h-40 rounded-lg object-contain shadow-lg" />
+      </div>
+      }
+
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Precio -->
+        <div class="group">
+          <label class="text-slate-400 text-xs font-bold uppercase tracking-widest pl-1 mb-2 block group-focus-within:text-emerald-400 transition-colors">
+            Precio (PEN)
+          </label>
+          <div class="relative">
+            <mat-icon class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg h-5 w-5">payments</mat-icon>
+            <input matInput formControlName="precio" type="number"
+                   class="w-full bg-slate-900/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-emerald-500/50 transition-all">
+          </div>
+        </div>
+
+        <!-- Stock -->
+        <div class="group">
+          <label class="text-slate-400 text-xs font-bold uppercase tracking-widest pl-1 mb-2 block group-focus-within:text-amber-400 transition-colors">
+            Stock Disponible
+          </label>
+          <div class="relative">
+            <mat-icon class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg h-5 w-5">layers</mat-icon>
+            <input matInput formControlName="stock" type="number"
+                   class="w-full bg-slate-900/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-amber-500/50 transition-all">
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="!px-0 !pt-8 !mt-2 border-t border-white/5">
+    <button (click)="undefined" [mat-dialog-close]="undefined"
+            class="px-6 py-3 text-slate-400 hover:text-white font-bold transition-colors">
+      Cancelar
+    </button>
+    <button (click)="guardar()" [disabled]="formGroup.invalid"
+            class="btn-premium btn-primary-glow px-8 py-3 disabled:opacity-50">
+      <mat-icon>save</mat-icon>
+      <span>Guardar Cambios</span>
+    </button>
+  </mat-dialog-actions>
+</div>

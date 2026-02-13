@@ -1,0 +1,31 @@
+.productos-table th,
+.productos-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #34445d;
+}
+
+.productos-table th {
+  background-color: #34445d;
+  color: white;
+}
+
+/* Glassmorphism table overrides */
+.premium-table tr {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.premium-table tr:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.premium-table td {
+  background: transparent !important;
+}
+
+.producto-imagen {
+  width: 60px;
+  height: auto;
+  border-radius: 5px;
+}

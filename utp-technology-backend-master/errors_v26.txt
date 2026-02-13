@@ -1,0 +1,4 @@
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/JWTAuthenticationFilter.java:[23,28] variable jwtService not initialized in the default constructor
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/JWTAuthenticationFilter.java:[25,42] variable userDetailsService not initialized in the default constructor
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/JWTAuthenticationFilter.java:[23,28] variable jwtService not initialized in the default constructor
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/JWTAuthenticationFilter.java:[25,42] variable userDetailsService not initialized in the default constructor

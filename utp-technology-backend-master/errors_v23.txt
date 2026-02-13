@@ -1,0 +1,52 @@
+[INFO] Compiling 54 source files with javac [debug parameters release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+---
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/CustomUserDetailsService.java:[30,71] unreported exception java.util.concurrent.ExecutionException; must be caught or declared to be thrown
+---
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/CustomUserDetailsService.java:[30,71] unreported exception java.util.concurrent.ExecutionException; must be caught or declared to be thrown
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/CustomUserDetailsService.java:[40,39] unreported exception java.util.concurrent.ExecutionException; must be caught or declared to be thrown
+---
+[INFO] Finished at: 2026-02-12T21:28:47-05:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project technology: Compilation failure: Compilation failure: 
+---
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project technology: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/CustomUserDetailsService.java:[30,71] unreported exception java.util.concurrent.ExecutionException; must be caught or declared to be thrown
+---
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project technology: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/CustomUserDetailsService.java:[30,71] unreported exception java.util.concurrent.ExecutionException; must be caught or declared to be thrown
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/CustomUserDetailsService.java:[40,39] unreported exception java.util.concurrent.ExecutionException; must be caught or declared to be thrown
+---
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/CustomUserDetailsService.java:[30,71] unreported exception java.util.concurrent.ExecutionException; must be caught or declared to be thrown
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/CustomUserDetailsService.java:[40,39] unreported exception java.util.concurrent.ExecutionException; must be caught or declared to be thrown
+[ERROR] -> [Help 1]
+---
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/security/CustomUserDetailsService.java:[40,39] unreported exception java.util.concurrent.ExecutionException; must be caught or declared to be thrown
+[ERROR] -> [Help 1]
+[ERROR] 
+---
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+---
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+---
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+---
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+---
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+---

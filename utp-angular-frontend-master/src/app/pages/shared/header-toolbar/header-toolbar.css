@@ -1,0 +1,19 @@
+/* Glassmorphism overrides if needed */
+::ng-deep .mat-mdc-menu-panel.glass-effect {
+  background: rgba(15, 23, 42, 0.9) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+  padding: 8px !important;
+}
+
+::ng-deep .mat-mdc-menu-item .mat-icon {
+  margin-right: 12px !important;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}

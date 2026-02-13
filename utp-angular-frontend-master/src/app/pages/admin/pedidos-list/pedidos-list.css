@@ -1,0 +1,13 @@
+/* Glassmorphism table overrides */
+.premium-table tr {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.premium-table td {
+  background: transparent !important;
+}
+
+::ng-deep .mat-mdc-paginator {
+  background: transparent !important;
+}

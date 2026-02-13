@@ -1,0 +1,86 @@
+<app-header-toolbar></app-header-toolbar>
+
+<div class="container mx-auto px-6 py-10">
+  <div class="max-w-6xl mx-auto">
+    <!-- Page Header -->
+    <div class="flex items-center gap-4 mb-10">
+      <div class="p-3 glass-card rounded-2xl border-blue-500/30">
+        <mat-icon class="text-blue-400 text-3xl h-8 w-8">history</mat-icon>
+      </div>
+      <div>
+        <h1 class="text-4xl font-bold text-white tracking-tight">Mis Pedidos</h1>
+        <p class="text-slate-400">Historial de tus compras y estado de envíos</p>
+      </div>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="glass-card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="premium-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th class="text-right">Total</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (element of dataSource.data; track element.id) {
+            <tr class="group hover:bg-white/5 transition-colors">
+              <td class="font-bold text-blue-400">#{{ element.id }}</td>
+              <td class="text-slate-300">{{ element.fecha | date: 'dd/MM/yyyy' }}</td>
+              <td>
+                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                      [ngClass]="{
+                        'bg-blue-500/20 text-blue-400 border border-blue-500/30': element.estado === 'En proceso',
+                        'bg-amber-500/20 text-amber-400 border border-amber-500/30': element.estado === 'Pendiente',
+                        'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30': element.estado === 'Completado',
+                        'bg-rose-500/20 text-rose-400 border border-rose-500/30': element.estado === 'Anulado'
+                      }">
+                  {{ element.estado }}
+                </span>
+              </td>
+              <td class="text-right font-bold text-white text-lg">
+                {{ element.total | currency: 'PEN': 'S/' }}
+              </td>
+              <td class="text-center">
+                <div class="flex justify-center gap-2">
+                  @if (element.estado === 'En proceso') {
+                  <button (click)="descargarComprobante(element)" matTooltip="Descargar comprobante"
+                          class="p-2 glass-card rounded-lg hover:border-blue-500/50 text-blue-400 transition-all">
+                    <mat-icon class="text-sm h-5 w-5">download</mat-icon>
+                  </button>
+                  }
+                  <button (click)="verDetallesPedido(element)" matTooltip="Ver detalles"
+                          class="p-2 glass-card rounded-lg hover:border-blue-500/50 text-slate-300 transition-all">
+                    <mat-icon class="text-sm h-5 w-5">list_alt</mat-icon>
+                  </button>
+                  @if (element.estado === 'Pendiente') {
+                  <button (click)="pagarPedido(element)" matTooltip="Pagar ahora"
+                          class="p-2 glass-card rounded-lg hover:border-emerald-500/50 text-emerald-400 transition-all">
+                    <mat-icon class="text-sm h-5 w-5">payments</mat-icon>
+                  </button>
+                  <button (click)="anularPedido(element)" matTooltip="Anular pedido"
+                          class="p-2 glass-card rounded-lg hover:border-rose-500/50 text-rose-400 transition-all">
+                    <mat-icon class="text-sm h-5 w-5">cancel</mat-icon>
+                  </button>
+                  }
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination Footer -->
+      <div class="p-4 bg-white/5 border-t border-white/10">
+        <mat-paginator class="!bg-transparent !text-slate-400"
+          [length]="resultsLength" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons>
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

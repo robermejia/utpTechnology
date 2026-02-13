@@ -1,0 +1,8 @@
+::ng-deep .cdk-overlay-pane {
+  max-width: 95vw !important;
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  background: transparent !important;
+  box-shadow: none !important;
+}

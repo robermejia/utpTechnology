@@ -1,0 +1,78 @@
+<app-header-toolbar></app-header-toolbar>
+
+<div class="container mx-auto px-6 py-8">
+  <!-- Search and Navigation Header -->
+  <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12 glass-card p-6">
+    <div class="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+      <div class="relative w-full sm:w-80">
+        <mat-icon class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</mat-icon>
+        <input type="text" [formControl]="busquedaControl" 
+               placeholder="Buscar productos..."
+               class="w-full bg-slate-800/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-blue-500/50 transition-all">
+      </div>
+      
+      <a routerLink="/carrito-compras" 
+         class="btn-premium btn-primary-glow w-full sm:w-auto justify-center">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>Ver Carrito</span>
+      </a>
+    </div>
+
+    <div class="w-full md:w-auto">
+      <mat-paginator class="!bg-transparent !text-slate-300"
+        [length]="resultsLength" [pageSize]="pageSize" [pageIndex]="pageIndex"
+        [pageSizeOptions]="[16, 50, 100]" showFirstLastButtons (page)="handlePageEvent($event)">
+      </mat-paginator>
+    </div>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    @for (product of products; track product.id) {
+    <div class="glass-card group flex flex-col h-full overflow-hidden">
+      <!-- Image Container -->
+      <div class="relative aspect-[4/5] overflow-hidden">
+        <img [src]="product.imagen" [attr.alt]="product.nombre" 
+             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+        
+        <!-- Price Tag -->
+        <div class="absolute top-4 right-4 glass-effect px-3 py-1 rounded-lg border border-white/10">
+          <span class="text-blue-400 font-bold text-lg">
+            {{ product.precio | currency: 'PEN' : 'S/ ' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="p-6 flex-1 flex flex-col">
+        <div class="mb-4">
+          <h3 class="text-xl font-bold text-slate-100 group-hover:text-blue-400 transition-colors line-clamp-2">
+            {{ product.nombre }}
+          </h3>
+          <div class="flex items-center gap-2 mt-2">
+            <mat-icon class="text-slate-500 text-sm h-4 w-4">inventory_2</mat-icon>
+            <span class="text-slate-400 text-sm">Stock: {{ product.stock }}</span>
+          </div>
+        </div>
+
+        <div class="mt-auto">
+          <button (click)="addProduct(product)" 
+                  class="btn-premium w-full justify-center bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-blue-500/50 transition-all">
+            <mat-icon class="text-blue-400">add_shopping_cart</mat-icon>
+            <span class="font-medium">Agregar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <!-- Bottom Paginator -->
+  <div class="mt-12 glass-card p-4 flex justify-center">
+    <mat-paginator class="!bg-transparent !text-slate-300"
+      [length]="resultsLength" [pageSize]="pageSize" [pageIndex]="pageIndex"
+      [pageSizeOptions]="[16, 50, 100]" showFirstLastButtons (page)="handlePageEvent($event)">
+    </mat-paginator>
+  </div>
+</div>

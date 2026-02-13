@@ -1,0 +1,34 @@
+<div class="p-10 bg-[#0f172a] text-white rounded-2xl border border-white/10 shadow-2xl text-center max-w-md mx-auto">
+  <div class="mb-8">
+    <div class="w-20 h-20 mx-auto bg-gradient-to-tr from-emerald-600 to-teal-600 rounded-2xl flex items-center justify-center shadow-2xl mb-6 border border-white/20">
+      <mat-icon class="!text-white !h-10 !w-10 !text-4xl">payments</mat-icon>
+    </div>
+    <h2 class="text-3xl font-black tracking-tight uppercase mb-2">Finalizar Pago</h2>
+    <p class="text-slate-500 font-medium">Pedido #{{ data.pedido.id }}</p>
+  </div>
+
+  <div class="glass-card p-6 mb-8 border-emerald-500/20 bg-emerald-500/5">
+    <div class="text-slate-400 uppercase tracking-widest text-xs font-bold mb-2">Total a Pagar</div>
+    <div class="text-5xl font-black text-white">
+      {{ data.pedido.total | currency: 'PEN': 'S/' }}
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    <button (click)="pagar()" 
+            class="btn-premium btn-primary-glow w-full justify-center py-5 text-lg font-bold">
+      <mat-icon>check_circle</mat-icon>
+      <span>Confirmar y Pagar</span>
+    </button>
+    
+    <button mat-dialog-close 
+            class="w-full py-4 text-slate-500 hover:text-white font-bold transition-colors">
+      Cancelar y Volver
+    </button>
+  </div>
+
+  <div class="mt-8 pt-8 border-t border-white/5 flex items-center justify-center gap-3 text-slate-500 text-sm">
+    <mat-icon class="text-emerald-500 text-lg">verified_user</mat-icon>
+    <span>Transacción Segura encriptada</span>
+  </div>
+</div>

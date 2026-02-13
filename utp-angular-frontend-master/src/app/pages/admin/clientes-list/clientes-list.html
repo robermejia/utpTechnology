@@ -1,0 +1,115 @@
+<div class="container mx-auto px-6 py-10">
+  <div class="max-w-7xl mx-auto">
+    <!-- Page Header -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-10">
+      <div class="flex items-center gap-4">
+        <div class="p-3 glass-card rounded-2xl border-blue-500/30">
+          <mat-icon class="text-blue-400 text-3xl h-8 w-8">people</mat-icon>
+        </div>
+        <div>
+          <h1 class="text-4xl font-bold text-white tracking-tight">Directorio de Clientes</h1>
+          <p class="text-slate-400">Gestión de perfiles de usuario y datos de contacto</p>
+        </div>
+      </div>
+
+      <button (click)="enDesarrollo()" 
+              class="btn-premium btn-primary-glow px-8 py-4 text-lg">
+        <mat-icon>person_add</mat-icon>
+        <span>Nuevo Cliente</span>
+      </button>
+    </div>
+
+    <!-- Management Card -->
+    <div class="glass-card overflow-hidden">
+      <!-- Search & Pager Header -->
+      <div class="p-6 border-b border-white/10 flex flex-col sm:flex-row justify-between items-center gap-6">
+        <div class="relative w-full sm:w-96">
+          <mat-icon class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</mat-icon>
+          <input type="text" placeholder="Buscar por nombre, DNI o correo..."
+                 class="w-full bg-slate-800/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-blue-500/50 transition-all">
+        </div>
+
+        <mat-paginator class="!bg-transparent !text-slate-400"
+          [length]="resultsLength" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons>
+        </mat-paginator>
+      </div>
+
+      <!-- Table Content -->
+      <div class="overflow-x-auto">
+        <table class="premium-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre Completo</th>
+              <th>DNI</th>
+              <th>Contacto</th>
+              <th>Correo Electrónico</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (element of dataSource.data; track element.id) {
+            <tr class="group hover:bg-white/5 transition-colors">
+              <td class="font-bold text-blue-400">#{{ element.id }}</td>
+              <td>
+                <div class="flex flex-col">
+                  <span class="font-bold text-white uppercase">{{ element.nombre }} {{ element.apellido }}</span>
+                  <span class="text-slate-500 text-xs">Registrado</span>
+                </div>
+              </td>
+              <td class="text-slate-300 font-mono">{{ element.dni }}</td>
+              <td class="text-slate-300">
+                <div class="flex items-center gap-2">
+                  <mat-icon class="text-xs h-4 w-4 text-slate-500">phone</mat-icon>
+                  {{ element.telefono }}
+                </div>
+              </td>
+              <td>
+                <div class="flex items-center gap-2 text-blue-400/80">
+                  <mat-icon class="text-xs h-4 w-4">mail</mat-icon>
+                  {{ element.correo }}
+                </div>
+              </td>
+              <td class="text-center">
+                <div class="flex justify-center gap-3">
+                  <button (click)="enDesarrollo()" matTooltip="Editar Perfil"
+                          class="p-2 glass-card rounded-lg hover:border-amber-500/50 text-amber-400 transition-all">
+                    <mat-icon class="text-sm h-5 w-5">edit</mat-icon>
+                  </button>
+                  <button (click)="enDesarrollo()" matTooltip="Eliminar"
+                          class="p-2 glass-card rounded-lg hover:border-rose-500/50 text-rose-400 transition-all">
+                    <mat-icon class="text-sm h-5 w-5">delete</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            }
+            @if (isLoading) {
+            <tr>
+              <td colspan="6" class="py-20 text-center">
+                <div class="flex flex-col items-center gap-4">
+                  <div class="h-12 w-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin"></div>
+                  <span class="text-slate-400">Cargando directorio...</span>
+                </div>
+              </td>
+            </tr>
+            } @else if (dataSource.data.length === 0) {
+            <tr>
+              <td colspan="6" class="py-20 text-center text-slate-500">
+                 No se encontraron clientes en el directorio
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table Footer -->
+      <div class="p-4 bg-white/5 border-t border-white/10">
+        <mat-paginator class="!bg-transparent !text-slate-400"
+          [length]="resultsLength" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons>
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

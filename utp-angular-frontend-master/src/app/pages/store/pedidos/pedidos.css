@@ -1,0 +1,16 @@
+/* Glassmorphism table overrides */
+.premium-table tr {
+  background: transparent !important;
+}
+
+.premium-table td {
+  background: transparent !important;
+}
+
+::ng-deep .mat-mdc-paginator {
+  background: transparent !important;
+}
+
+.productos-table tbody tr:nth-child(even) {
+  background-color: #e6f0ff;
+}

@@ -1,0 +1,60 @@
+<div class="min-h-screen flex items-center justify-center p-6">
+  <div class="glass-card w-full max-w-md p-10 flex flex-col items-center">
+    <!-- Logo/Branding -->
+    <div class="mb-10 text-center">
+      <div class="w-20 h-20 mx-auto bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-2xl mb-6 border border-white/20">
+        <mat-icon class="!text-white !h-10 !w-10 !text-4xl">security</mat-icon>
+      </div>
+      <h1 class="text-3xl font-black text-white tracking-tight uppercase">UTP Technology</h1>
+      <p class="text-slate-400 mt-2 font-medium">Ingresa a tu cuenta premium</p>
+    </div>
+
+    <!-- Login Form -->
+    <div [formGroup]="form" class="w-full space-y-6">
+      <!-- Email Field -->
+      <div class="group">
+        <label class="text-slate-400 text-xs font-bold uppercase tracking-widest pl-1 mb-2 block group-focus-within:text-blue-400 transition-colors">
+          Correo Electrónico
+        </label>
+        <div class="relative">
+          <mat-icon class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg h-5 w-5">alternate_email</mat-icon>
+          <input type="email" formControlName="email"
+                 class="w-full bg-slate-900/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50 focus:ring-4 focus:ring-blue-500/10 transition-all font-medium"
+                 placeholder="admin@tienda.com">
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="group">
+        <label class="text-slate-400 text-xs font-bold uppercase tracking-widest pl-1 mb-2 block group-focus-within:text-blue-400 transition-colors">
+          Contraseña
+        </label>
+        <div class="relative">
+          <mat-icon class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg h-5 w-5">lock_open</mat-icon>
+          <input [type]="passwordType" formControlName="password"
+                 class="w-full bg-slate-900/50 border border-white/10 rounded-xl py-4 pl-12 pr-12 text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500/50 focus:ring-4 focus:ring-blue-500/10 transition-all font-medium"
+                 placeholder="••••••••">
+          <button type="button" (click)="togglePassword()" 
+                  class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors">
+            <mat-icon class="text-lg h-5 w-5">{{ passwordType === 'password' ? 'visibility' : 'visibility_off' }}</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button (click)="loginClick()" [disabled]="form.invalid"
+              class="btn-premium btn-primary-glow w-full justify-center py-5 text-lg font-bold mt-4 disabled:opacity-50 disabled:cursor-not-allowed">
+        <span>Iniciar Sesión Segura</span>
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+
+      <!-- Footer Help -->
+      <div class="text-center pt-8 border-t border-white/5 mt-8">
+        <p class="text-slate-500 text-sm">
+          ¿No tienes una cuenta? 
+          <a routerLink="/register" class="text-blue-400 hover:text-blue-300 font-bold transition-colors">Regístrate aquí</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

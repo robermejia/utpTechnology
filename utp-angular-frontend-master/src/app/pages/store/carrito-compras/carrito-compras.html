@@ -1,0 +1,116 @@
+<app-header-toolbar></app-header-toolbar>
+
+<div class="container mx-auto px-6 py-10">
+  <div class="max-w-6xl mx-auto">
+    <!-- Page Header -->
+    <div class="flex items-center gap-4 mb-10">
+      <div class="p-3 glass-card rounded-2xl border-blue-500/30">
+        <mat-icon class="text-blue-400 text-3xl h-8 w-8">shopping_cart</mat-icon>
+      </div>
+      <div>
+        <h1 class="text-4xl font-bold text-white tracking-tight">Tu Carrito</h1>
+        <p class="text-slate-400">Revisa tus productos antes de finalizar la compra</p>
+      </div>
+    </div>
+
+    <!-- Cart Content -->
+    <div class="glass-card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="premium-table">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th class="text-right">Precio</th>
+              <th class="text-right">Subtotal</th>
+              <th class="text-center">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (element of dataSource.data; track element.product.id) {
+            <tr>
+              <td>
+                <img [src]="element.product.imagen" [attr.alt]="element.product.nombre" 
+                     class="w-20 h-20 object-cover rounded-xl border border-white/10 shadow-lg" />
+              </td>
+              <td>
+                <div class="font-bold text-white text-lg">{{ element.product.nombre }}</div>
+                <div class="text-slate-500 text-sm">SKU: {{ element.product.id }}</div>
+              </td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <button (click)="quantitySub(element)" 
+                          class="p-1.5 glass-card rounded-lg hover:border-blue-500/50 transition-all active:scale-90">
+                    <mat-icon class="text-slate-400 text-sm h-4 w-4">remove</mat-icon>
+                  </button>
+                  <span class="w-10 text-center font-bold text-blue-400 text-lg">{{ element.quantity }}</span>
+                  <button (click)="quantityAdd(element)"
+                          class="p-1.5 glass-card rounded-lg hover:border-blue-500/50 transition-all active:scale-90">
+                    <mat-icon class="text-blue-400 text-sm h-4 w-4">add</mat-icon>
+                  </button>
+                </div>
+              </td>
+              <td class="text-right font-medium text-slate-300">
+                {{ element.product.precio | currency: 'PEN' : 'S/ ' }}
+              </td>
+              <td class="text-right font-bold text-white">
+                {{ getSubTotal(element) | currency: 'PEN' : 'S/ ' }}
+              </td>
+              <td class="text-center">
+                <button (click)="removeProduct(element)" class="text-rose-500 hover:text-rose-400 transition-colors p-2">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </td>
+            </tr>
+            }
+            @if (dataSource.data.length === 0) {
+            <tr>
+              <td colspan="6" class="py-20 text-center">
+                <mat-icon class="text-slate-600 !h-16 !w-16 !text-6xl mb-4">remove_shopping_cart</mat-icon>
+                <div class="text-slate-400 text-xl">Tu carrito está vacío</div>
+                <a routerLink="/productos" class="text-blue-400 hover:text-blue-300 font-medium underline mt-2 inline-block">Explorar productos</a>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Footer / Summary -->
+      @if (dataSource.data.length > 0) {
+      <div class="bg-white/5 border-t border-white/10 p-8 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3">
+            <span class="text-slate-400 uppercase tracking-widest text-xs font-semibold">Total a pagar</span>
+            <div class="h-[1px] w-12 bg-blue-500/50"></div>
+          </div>
+          <div class="text-5xl font-black text-white">
+            {{ getTotal() | currency: 'PEN' : 'S/ ' }}
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+          @if (!isLogged) {
+          <div class="flex flex-col gap-3">
+            <p class="text-amber-400 text-sm flex items-center gap-2">
+              <mat-icon class="text-sm h-4 w-4">info</mat-icon>
+              Inicia sesión para finalizar tu compra
+            </p>
+            <a routerLink="/login" class="btn-premium btn-primary-glow justify-center">
+              <mat-icon>login</mat-icon>
+              <span>Identificarse y Comprar</span>
+            </a>
+          </div>
+          } @else {
+          <button (click)="comprar()" class="btn-premium btn-primary-glow justify-center px-12 py-5 text-xl">
+            <mat-icon>credit_card</mat-icon>
+            <span>Confirmar Pedido</span>
+          </button>
+          }
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

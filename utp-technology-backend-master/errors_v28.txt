@@ -1,0 +1,2 @@
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/web/controller/ClienteController.java:[23,32] variable clienteService not initialized in the default constructor
+[ERROR] /C:/Users/rober/Desktop/Integrador1/utp-technology-backend-master/src/main/java/com/utp/technology/web/controller/ClienteController.java:[23,32] variable clienteService not initialized in the default constructor
