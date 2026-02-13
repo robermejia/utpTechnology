@@ -2,7 +2,7 @@ FROM eclipse-temurin:21-jdk-alpine AS build
 
 # Copiando mvnw (Maven Wrapped)
 COPY mvnw pom.xml /app/
-ADD .mvn /app/.mvn
+COPY .mvn/wrapper/maven-wrapper.properties /app/.mvn/wrapper/maven-wrapper.properties
 
 WORKDIR /app
 
