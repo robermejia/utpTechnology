@@ -1,18 +1,14 @@
 [DEPLOYMENT NOTICE]
 
-¡Backend desplegado! 🚀
+¡Estamos en la recta final! 🏁
 
-Ahora toca el **Frontend (Angular)**. He actualizado el archivo `environment.prod.ts` para que apunte a tu nuevo backend (`https://utptechnology.onrender.com/api/v1`).
+El error `npm ERR! code ERESOLVE` es clásico de Angular: las dependencias son muy estrictas y están chocando entre sí.
 
-**Pasos para desplegar el Frontend:**
+**Solución Implementada:**
+He modificado el `Dockerfile` del frontend para añadir el flag `--legacy-peer-deps` al comando de instalación. Esto le dice a npm que sea "menos estricto" y permita continuar aunque las versiones no coincidan exactamente.
 
-1.  En Render, crea un nuevo **Web Service**.
-2.  Conecta el mismo repositorio (`utpTechnology`).
-3.  **Configuración:**
-    *   **Name:** `utp-frontend` (o el que quieras).
-    *   **Root Directory:** `utp-angular-frontend-master`
-    *   **Runtime:** `Docker`
-    *   **Region:** La misma que el backend (recomendado).
-4.  Dale a **Create Web Service**.
+**Pasos a seguir:**
+1. Ve a Render (servicio **utp-frontend**).
+2. **Manual Deploy** -> **Deploy latest commit** (el commit debe decir: *"fix: Use --legacy-peer-deps for npm install to resolve dependency conflicts"*).
 
-¡Y listo! Cuando termine, Render te dará una URL para ver tu página web funcionando. 🌐
+¡Esto debería desbloquear la instalación y permitir que el frontend se construya correctamente! 🔓
