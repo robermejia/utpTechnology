@@ -89,7 +89,7 @@ import { LoggedUser } from '../../../models/auth.model';
   `,
   styleUrl: './header-toolbar.css',
 })
-export class HeaderToolbarComponent implements OnInit {
+export class HeaderToolbarFinalComponent implements OnInit {
   @ViewChild('menu') public menu!: MatMenu;
 
   public user?: LoggedUser = undefined;

@@ -1,8 +1,7 @@
-import { DialogRef } from '@angular/cdk/dialog';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ListPedidoDto, PedidoDetailDto } from '../../../../models/pedido';
 import { PedidoService } from '../../../../services/pedido.service';
 
@@ -20,7 +19,7 @@ export type PagarPedidoModalData = {
 export class PagarPedidoModalComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: PagarPedidoModalData,
-    private dialogRed: DialogRef,
+    public dialogRef: MatDialogRef<PagarPedidoModalComponent>,
     private pedidoService: PedidoService
   ) { }
 
@@ -28,7 +27,7 @@ export class PagarPedidoModalComponent {
     this.pedidoService.pagar(this.data.pedido.id).subscribe({
       next: (res) => {
         window.alert(res.message);
-        this.dialogRed.close(true);
+        this.dialogRef.close(true);
       },
     });
   }
