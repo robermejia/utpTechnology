@@ -15,6 +15,6 @@ export type DetallePedidoModalData = {
   templateUrl: './detalle-pedido-modal.html',
   styleUrl: './detalle-pedido-modal.css',
 })
-export class DetallePedidoModal {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DetallePedidoModalData) {}
+export class DetallePedidoModalComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DetallePedidoModalData) { }
 }

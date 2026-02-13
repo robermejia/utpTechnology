@@ -17,12 +17,12 @@ export type PagarPedidoModalData = {
   templateUrl: './pagar-pedido-modal.html',
   styleUrl: './pagar-pedido-modal.css',
 })
-export class PagarPedidoModal {
+export class PagarPedidoModalComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: PagarPedidoModalData,
     private dialogRed: DialogRef,
     private pedidoService: PedidoService
-  ) {}
+  ) { }
 
   pagar() {
     this.pedidoService.pagar(this.data.pedido.id).subscribe({

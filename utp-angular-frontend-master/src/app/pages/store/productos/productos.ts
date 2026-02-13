@@ -21,7 +21,7 @@ import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { ProductoListDto } from '../../../models/producto.model';
 import { CarritoComprasService } from '../../../services/carrito-compras.service';
 import { ProductoService } from '../../../services/producto.service';
-import { HeaderToolbar } from "../../shared/header-toolbar/header-toolbar";
+import { HeaderToolbarComponent } from "../../shared/header-toolbar/header-toolbar";
 
 @Component({
   selector: 'app-productos',
@@ -35,8 +35,8 @@ import { HeaderToolbar } from "../../shared/header-toolbar/header-toolbar";
     MatInputModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    HeaderToolbar
-],
+    HeaderToolbarComponent
+  ],
   templateUrl: './productos.html',
   styleUrl: './productos.css',
 })
@@ -60,7 +60,7 @@ export class Productos implements OnInit, OnDestroy {
     private productoService: ProductoService,
     private carritoComprasService: CarritoComprasService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.listProducts();

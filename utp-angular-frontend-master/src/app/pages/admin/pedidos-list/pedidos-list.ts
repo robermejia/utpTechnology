@@ -9,7 +9,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { startWith, Subscription, switchMap } from 'rxjs';
 import { ListPedidoAdminDto } from '../../../models/pedido';
 import { PedidoService } from '../../../services/pedido.service';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-pedidos-list',
@@ -19,6 +19,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    NgClass
   ],
   templateUrl: './pedidos-list.html',
   styleUrl: './pedidos-list.css',
@@ -45,7 +46,7 @@ export class PedidosList implements AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator)
   readonly paginator!: MatPaginator;
 
-  constructor(private pedidoService: PedidoService) {}
+  constructor(private pedidoService: PedidoService) { }
 
   ngAfterViewInit(): void {
     this.subscription.add(

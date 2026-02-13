@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderToolbar } from '../header-toolbar/header-toolbar';
+import { HeaderToolbarComponent } from '../header-toolbar/header-toolbar';
 
 @Component({
   selector: 'app-layout',
-  imports: [HeaderToolbar, RouterOutlet],
+  imports: [HeaderToolbarComponent, RouterOutlet],
   templateUrl: './layout.html',
   styleUrl: './layout.css',
 })
-export class Layout {}
+export class Layout { }

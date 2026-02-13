@@ -19,13 +19,13 @@ import { LoggedUser } from '../../../models/auth.model';
   templateUrl: './header-toolbar.html',
   styleUrl: './header-toolbar.css',
 })
-export class HeaderToolbar implements OnInit {
-  user?: LoggedUser = undefined;
-  isLogged: boolean = false;
-  isAdmin: boolean = false;
-  isCustomer: boolean = true;
+export class HeaderToolbarComponent implements OnInit {
+  public user?: LoggedUser = undefined;
+  public isLogged: boolean = false;
+  public isAdmin: boolean = false;
+  public isCustomer: boolean = true;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.user = this.authService.getUser() ?? undefined;

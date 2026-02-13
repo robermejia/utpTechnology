@@ -14,12 +14,12 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { startWith, Subscription, switchMap } from 'rxjs';
 import { ListPedidoDto } from '../../../models/pedido';
 import { PedidoService } from '../../../services/pedido.service';
-import { HeaderToolbar } from '../../shared/header-toolbar/header-toolbar';
+import { HeaderToolbarComponent } from '../../shared/header-toolbar/header-toolbar';
 import {
-  DetallePedidoModal,
+  DetallePedidoModalComponent,
   DetallePedidoModalData,
 } from './detalle-pedido-modal/detalle-pedido-modal';
-import { PagarPedidoModal } from './pagar-pedido-modal/pagar-pedido-modal';
+import { PagarPedidoModalComponent } from './pagar-pedido-modal/pagar-pedido-modal';
 
 @Component({
   selector: 'app-pedidos',
@@ -32,7 +32,7 @@ import { PagarPedidoModal } from './pagar-pedido-modal/pagar-pedido-modal';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    HeaderToolbar,
+    HeaderToolbarComponent,
   ],
   templateUrl: './pedidos.html',
   styleUrl: './pedidos.css',
@@ -54,7 +54,7 @@ export class Pedidos implements AfterViewInit, OnDestroy {
   constructor(
     private pedidoService: PedidoService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngAfterViewInit(): void {
     this.subscription.add(
@@ -105,8 +105,8 @@ export class Pedidos implements AfterViewInit, OnDestroy {
   verDetallesPedido(pedido: ListPedidoDto): void {
     this.pedidoService.verDetalles(pedido.id).subscribe({
       next: (res) => {
-        this.dialog.open<DetallePedidoModal, DetallePedidoModalData>(
-          DetallePedidoModal,
+        this.dialog.open<DetallePedidoModalComponent, DetallePedidoModalData>(
+          DetallePedidoModalComponent,
           { data: { pedido, detalles: res.data } }
         );
       },
@@ -121,7 +121,7 @@ export class Pedidos implements AfterViewInit, OnDestroy {
     this.pedidoService.verDetalles(pedido.id).subscribe({
       next: (res) => {
         this.dialog
-          .open<PagarPedidoModal>(PagarPedidoModal, {
+          .open<PagarPedidoModalComponent>(PagarPedidoModalComponent, {
             data: { pedido, detalles: res.data },
           })
           .afterClosed()
