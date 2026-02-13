@@ -7,8 +7,10 @@ import com.google.cloud.firestore.Firestore;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
+import org.springframework.core.io.ClassPathResource;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -18,9 +20,17 @@ public class FirebaseConfig {
     @Bean
     public FirebaseApp firebaseApp() throws IOException {
         if (FirebaseApp.getApps().isEmpty()) {
-            // Load service account from classpath (works in JAR/Docker)
-            ClassPathResource resource = new ClassPathResource("service-account.json");
-            InputStream serviceAccount = resource.getInputStream();
+            InputStream serviceAccount;
+
+            // Try to load from Render Secret File path first
+            File secretFile = new File("/etc/secrets/service-account.json");
+            if (secretFile.exists()) {
+                serviceAccount = new FileInputStream(secretFile);
+            } else {
+                // Fallback to classpath for local development
+                ClassPathResource resource = new ClassPathResource("service-account.json");
+                serviceAccount = resource.getInputStream();
+            }
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
