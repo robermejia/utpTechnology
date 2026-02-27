@@ -38,7 +38,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             dto.setId(u.getId());
             dto.setNombre(u.getNombre());
             dto.setCorreo(u.getCorreo());
-            // Map other fields as needed
+            dto.setIdRol(u.getIdRol());
             return dto;
           })
           .collect(Collectors.toList());

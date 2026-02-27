@@ -51,7 +51,7 @@ export class UsuarioModalComponent implements OnInit {
             nombre: [this.data?.nombre || '', [Validators.required, Validators.minLength(3)]],
             correo: [this.data?.correo || '', [Validators.required, Validators.email]],
             clave: ['', this.isEditMode ? [] : [Validators.required, Validators.minLength(6)]],
-            idRol: [this.data?.idRol || 3, Validators.required]
+            id_rol: [this.data?.id_rol || 3, Validators.required]
         });
     }
 

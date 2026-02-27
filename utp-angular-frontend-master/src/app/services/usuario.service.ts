@@ -8,14 +8,14 @@ export interface Usuario {
     nombre: string;
     correo: string;
     clave?: string;
-    idRol: number;
+    id_rol: number;
 }
 
 export interface UserListDto {
     id: number;
     nombre: string;
     correo: string;
-    idRol: number;
+    id_rol: number;
 }
 
 export interface ApiResponse<T> {
