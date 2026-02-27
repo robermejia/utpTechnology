@@ -58,7 +58,7 @@ export class PedidosAdminComponent implements AfterViewInit, OnDestroy {
     this.subscription.add(
       this.paginator.page
         .pipe(
-          startWith({} as PageEvent),
+          startWith({ pageIndex: 0, pageSize: 10, length: 0 } as PageEvent),
           switchMap(() => {
             this.isLoading = true;
             return this.cargarPedidos();

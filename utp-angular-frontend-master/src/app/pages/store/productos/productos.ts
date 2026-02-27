@@ -19,6 +19,7 @@ import {
 } from '@angular/material/paginator';
 import { RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 import { ProductoListDto } from '../../../models/producto.model';
 import { CarritoComprasService } from '../../../services/carrito-compras.service';
 import { ProductoService } from '../../../services/producto.service';
@@ -104,7 +105,26 @@ export class ProductosStoreComponent implements OnInit, OnDestroy {
 
   public addProduct(producto: ProductoListDto) {
     this.carritoComprasService.addProduct(producto, 1, true);
-    window.alert('Producto agregado al carrito');
+
+    // Toast notification for Premium UI
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: false,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Añadido al Carrito',
+      background: '#1e293b',
+      color: '#fff'
+    });
   }
 
   ngOnDestroy(): void {
