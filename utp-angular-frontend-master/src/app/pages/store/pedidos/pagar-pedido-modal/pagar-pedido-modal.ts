@@ -2,6 +2,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { ListPedidoDto, PedidoDetailDto } from '../../../../models/pedido';
 import { PedidoService } from '../../../../services/pedido.service';
 
@@ -10,9 +11,12 @@ export type PagarPedidoModalData = {
   detalles: PedidoDetailDto[];
 };
 
+import { CommonModule } from '@angular/common';
+
 @Component({
+  standalone: true,
   selector: 'app-pagar-pedido-modal',
-  imports: [CurrencyPipe, DatePipe, MatButtonModule, MatDialogModule],
+  imports: [CurrencyPipe, DatePipe, MatButtonModule, MatDialogModule, MatIconModule, CommonModule],
   templateUrl: './pagar-pedido-modal.html',
   styleUrl: './pagar-pedido-modal.css',
 })

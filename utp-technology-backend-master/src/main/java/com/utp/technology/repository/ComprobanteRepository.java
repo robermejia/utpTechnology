@@ -20,7 +20,8 @@ public class ComprobanteRepository {
 
     public Comprobante save(Comprobante comprobante) {
         if (comprobante.getId() == null) {
-            firestore.collection(COLLECTION_NAME).add(comprobante);
+            comprobante.setId(Math.abs((int) System.currentTimeMillis() + (int) (Math.random() * 10000)));
+            firestore.collection(COLLECTION_NAME).document(String.valueOf(comprobante.getId())).set(comprobante);
         } else {
             firestore.collection(COLLECTION_NAME).document(String.valueOf(comprobante.getId())).set(comprobante);
         }

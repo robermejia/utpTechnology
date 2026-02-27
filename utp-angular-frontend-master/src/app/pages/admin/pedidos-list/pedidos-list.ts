@@ -6,6 +6,9 @@ import {
 } from '@angular/material/paginator';
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 import { startWith, Subscription, switchMap } from 'rxjs';
 import { ListPedidoAdminDto } from '../../../models/pedido';
 import { PedidoService } from '../../../services/pedido.service';
@@ -19,6 +22,9 @@ import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatButtonModule,
     NgClass
   ],
   templateUrl: './pedidos-list.html',

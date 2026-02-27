@@ -13,6 +13,7 @@ import {
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import {
   ProductoListDto,
   ProductoStoreDto,
@@ -35,6 +36,7 @@ export type ProductoModalDataClosed = {
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
     ReactiveFormsModule,
   ],
   templateUrl: './producto-modal.html',
@@ -54,7 +56,7 @@ export class ProductoModal implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: ProductoModalData,
     private dialogRef: MatDialogRef<ProductoModal, ProductoModalDataClosed>
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (this.data.producto !== undefined) {

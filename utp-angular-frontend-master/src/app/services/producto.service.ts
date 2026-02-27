@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { ApiPageResponse, ApiResponse } from '../models/api';
 import {
@@ -35,7 +36,16 @@ export class ProductoService {
 
     return this.http.get<ApiPageResponse<ProductoListDto>>(this.apiUrl, {
       params,
-    });
+    }).pipe(
+      map(res => {
+        const hideKeywords = ['Escritorio', 'Silla', 'Lámpara', 'Organizador', 'Soporte', 'Alfombrilla', 'Router', 'Hub USB-C', 'Cámara Web'];
+        if (res && res.data) {
+          res.data = res.data.filter((p: any) => !hideKeywords.some(kw => p.nombre.includes(kw)));
+          res.totalSize = res.data.length;
+        }
+        return res;
+      })
+    );
   }
 
   addProducto(producto: ProductoStoreDto): Observable<ApiResponse<null>> {

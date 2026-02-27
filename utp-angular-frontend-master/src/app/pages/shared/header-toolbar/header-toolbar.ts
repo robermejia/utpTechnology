@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
@@ -10,6 +11,7 @@ import { LoggedUser } from '../../../models/auth.model';
 @Component({
   selector: 'app-header-toolbar-v2',
   imports: [
+    CommonModule,
     RouterLink,
     MatToolbarModule,
     MatButtonModule,

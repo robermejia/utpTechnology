@@ -1,0 +1,6 @@
+.main-content {
+  padding-top: 100px; /* 80px navbar + 20px extra spacing */
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+}

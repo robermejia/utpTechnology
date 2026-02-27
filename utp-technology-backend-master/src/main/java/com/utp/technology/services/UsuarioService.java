@@ -19,4 +19,10 @@ public interface UsuarioService {
 
   public boolean checkPassword(String hashedPassword, String password);
 
+  public Usuario guardar(Usuario usuario);
+
+  public Usuario editar(Integer id, Usuario usuario);
+
+  public void eliminar(Integer id);
+
 }

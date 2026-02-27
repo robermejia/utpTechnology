@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -90,6 +91,8 @@ export class CarritoCompras implements OnInit {
 
   comprar() {
     let dataPedido: StorePedidoDto = {
+      metodoPago: 'Tarjeta de Crédito',
+      total: this.getTotal(),
       detalles: [],
     };
 
@@ -97,13 +100,22 @@ export class CarritoCompras implements OnInit {
       return {
         id_producto: item.product.id,
         cantidad: item.quantity,
+        precioUnitario: item.product.precio,
+        subtotal: this.getSubTotal(item),
       };
     });
 
     this.pedidoService.generarPedido(dataPedido).subscribe({
       next: (res) => {
         if (res.success) {
-          alert(res.message);
+          Swal.fire({
+            title: '¡Pedido Confirmado!',
+            text: res.message || 'Tu pedido ha sido generado exitosamente.',
+            icon: 'success',
+            background: '#1e293b',
+            color: '#fff',
+            confirmButtonColor: '#3b82f6'
+          });
           this.carritoComprasService.limpiarCarrito();
           this.router.navigate(['/pedidos']);
         }

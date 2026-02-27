@@ -49,7 +49,8 @@ public class UsuarioRepository {
 
     public Usuario save(Usuario usuario) {
         if (usuario.getId() == null) {
-            firestore.collection(COLLECTION_NAME).add(usuario);
+            usuario.setId(Math.abs((int) System.currentTimeMillis() + (int) (Math.random() * 10000)));
+            firestore.collection(COLLECTION_NAME).document(String.valueOf(usuario.getId())).set(usuario);
         } else {
             firestore.collection(COLLECTION_NAME).document(String.valueOf(usuario.getId())).set(usuario);
         }

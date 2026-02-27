@@ -60,7 +60,8 @@ public class ClienteRepository {
 
   public Cliente save(Cliente cliente) {
     if (cliente.getId() == null) {
-      firestore.collection(COLLECTION_NAME).add(cliente);
+      cliente.setId(Math.abs((int) System.currentTimeMillis() + (int) (Math.random() * 10000)));
+      firestore.collection(COLLECTION_NAME).document(String.valueOf(cliente.getId())).set(cliente);
     } else {
       firestore.collection(COLLECTION_NAME).document(String.valueOf(cliente.getId())).set(cliente);
     }

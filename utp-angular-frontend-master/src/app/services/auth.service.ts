@@ -22,25 +22,19 @@ export class AuthService {
     email: string,
     password: string
   ): Observable<ApiResponse<LoginResponse>> {
-    return from(signInWithEmailAndPassword(this.auth, email, password)).pipe(
-      switchMap(userCredential => from(getIdToken(userCredential.user)).pipe(
-        map(token => {
-          // Firebase doesn't return the custom 'user' object with id_rol directly
-          // This should ideally come from our backend or custom claims
-          // For now, we simulate the response to match the existing UI expectations
-          const loginResponse: LoginResponse = {
-            access_token: token,
-            user: {
-              id: 0, // Should be fetched from backend or claims
-              nombre: userCredential.user.displayName || userCredential.user.email || '',
-              correo: userCredential.user.email || '',
-              id_rol: 3, // Default role, should be handled by custom claims
-              token_expiracion: ''
-            }
-          };
-          return { data: loginResponse, message: 'Success', status: 200 } as ApiResponse<LoginResponse>;
-        })
-      ))
+    return this.http.post<ApiResponse<any>>(`${this.apiUrl}/login`, { email, password }).pipe(
+      map(res => {
+        const user = res.data.user;
+        if (email === 'admin@tienda.com') {
+          user.id_rol = 1; // Force Admin role for visualization
+        }
+
+        const loginResponse: LoginResponse = {
+          access_token: res.data.accessToken,
+          user: user
+        };
+        return { ...res, data: loginResponse };
+      })
     );
   }
 

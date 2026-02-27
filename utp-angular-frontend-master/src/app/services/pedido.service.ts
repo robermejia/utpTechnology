@@ -85,8 +85,7 @@ export class PedidoService {
 
   anular(idPedido: number): Observable<ApiResponse<null>> {
     return this.http.delete<ApiResponse<null>>(
-      `${this.apiUrl}/${idPedido}/anular`,
-      undefined
+      `${this.apiUrl}/${idPedido}/anular`
     );
   }
 }

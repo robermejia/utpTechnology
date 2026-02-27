@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 import {
   AfterViewInit,
   Component,
@@ -76,7 +77,7 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private dialog: MatDialog,
     private productoService: ProductoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.subscription.add(
@@ -141,11 +142,31 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   eliminarProducto(id: number): void {
-    if (confirm('¿Estás seguro de eliminar este producto?')) {
-      this.productoService.deleteProducto(id).subscribe(() => {
-        this.emitPageEvent();
-      });
-    }
+    Swal.fire({
+      title: '¿Eliminar producto?',
+      text: "Esta acción no se puede deshacer.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ef4444',
+      cancelButtonColor: '#475569',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      background: '#1e293b',
+      color: '#fff'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productoService.deleteProducto(id).subscribe(() => {
+          Swal.fire({
+            title: '¡Eliminado!',
+            text: 'El producto ha sido eliminado exitosamente.',
+            icon: 'success',
+            background: '#1e293b',
+            color: '#fff'
+          });
+          this.emitPageEvent();
+        });
+      }
+    });
   }
 
   nuevoProducto(): void {
@@ -165,13 +186,27 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
           .subscribe({
             next: (res) => {
               if (res.success) {
-                window.alert(res.message);
+                Swal.fire({
+                  title: '¡Éxito!',
+                  text: res.message || 'Producto registrado exitosamente.',
+                  icon: 'success',
+                  background: '#1e293b',
+                  color: '#fff',
+                  confirmButtonColor: '#3b82f6'
+                });
                 this.emitPageEvent();
               }
             },
             error: (err) => {
               if (err instanceof HttpErrorResponse) {
-                window.alert(`Error: ${err.error.message}`);
+                Swal.fire({
+                  title: 'Error',
+                  text: `Hubo un error: ${err.error.message}`,
+                  icon: 'error',
+                  background: '#1e293b',
+                  color: '#fff',
+                  confirmButtonColor: '#3b82f6'
+                });
               }
             },
           });
@@ -198,13 +233,27 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
           .subscribe({
             next: (res) => {
               if (res.success) {
-                window.alert(res.message);
+                Swal.fire({
+                  title: '¡Éxito!',
+                  text: res.message || 'Producto editado exitosamente.',
+                  icon: 'success',
+                  background: '#1e293b',
+                  color: '#fff',
+                  confirmButtonColor: '#3b82f6'
+                });
                 this.emitPageEvent();
               }
             },
             error: (err) => {
               if (err instanceof HttpErrorResponse) {
-                window.alert(`Error: ${err.error.message}`);
+                Swal.fire({
+                  title: 'Error',
+                  text: `Hubo un error: ${err.error.message}`,
+                  icon: 'error',
+                  background: '#1e293b',
+                  color: '#fff',
+                  confirmButtonColor: '#3b82f6'
+                });
               }
             },
           });

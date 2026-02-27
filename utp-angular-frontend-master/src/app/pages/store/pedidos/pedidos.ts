@@ -1,5 +1,6 @@
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import Swal from 'sweetalert2';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,6 +25,7 @@ import { PagarPedidoModalComponent } from './pagar-pedido-modal/pagar-pedido-mod
 @Component({
   selector: 'app-pedidos',
   imports: [
+    CommonModule,
     CurrencyPipe,
     DatePipe,
     MatIconModule,
@@ -122,13 +124,32 @@ export class PedidosStoreComponent implements AfterViewInit, OnDestroy {
   }
 
   public anularPedido(pedido: ListPedidoDto): void {
-    let confirm = window.confirm('¿Seguro de anular el pedido?');
-    if (!confirm) return;
-    this.pedidoService.anular(pedido.id).subscribe({
-      next: (res) => {
-        window.alert(res.message);
-        this.paginator.page.emit();
-      },
+    Swal.fire({
+      title: '¿Anular pedido?',
+      text: "¿Estás seguro de que deseas anular este pedido?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ef4444',
+      cancelButtonColor: '#475569',
+      confirmButtonText: 'Sí, anular',
+      cancelButtonText: 'Cancelar',
+      background: '#1e293b',
+      color: '#fff'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.pedidoService.anular(pedido.id).subscribe({
+          next: (res) => {
+            Swal.fire({
+              title: 'Anulado',
+              text: res.message,
+              icon: 'success',
+              background: '#1e293b',
+              color: '#fff'
+            });
+            this.paginator.page.emit();
+          },
+        });
+      }
     });
   }
 

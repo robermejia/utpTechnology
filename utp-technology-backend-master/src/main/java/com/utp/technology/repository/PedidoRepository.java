@@ -39,7 +39,9 @@ public class PedidoRepository {
 
   public Pedido save(Pedido pedido) {
     if (pedido.getId() == null) {
-      firestore.collection(COLLECTION_NAME).add(pedido);
+      // Generate unique integer ID based on time + random
+      pedido.setId(Math.abs((int) System.currentTimeMillis() + (int) (Math.random() * 10000)));
+      firestore.collection(COLLECTION_NAME).document(String.valueOf(pedido.getId())).set(pedido);
     } else {
       firestore.collection(COLLECTION_NAME).document(String.valueOf(pedido.getId())).set(pedido);
     }

@@ -28,10 +28,14 @@ export type PedidoDetailDto = {
 };
 
 export type StorePedidoDto = {
+  metodoPago: string;
+  total: number;
   detalles: StorePedidoProductDto[];
 };
 
 export type StorePedidoProductDto = {
   id_producto: number;
   cantidad: number;
+  precioUnitario: number;
+  subtotal: number;
 };

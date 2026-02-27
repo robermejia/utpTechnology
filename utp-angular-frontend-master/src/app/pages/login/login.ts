@@ -11,9 +11,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
+import { CommonModule } from '@angular/common';
+
 @Component({
+  standalone: true,
   selector: 'app-login',
-  imports: [ReactiveFormsModule, MatButtonModule, MatIconModule],
+  imports: [ReactiveFormsModule, MatButtonModule, MatIconModule, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -28,7 +31,7 @@ export class Login {
 
   passwordType: 'password' | 'text' = 'password';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   togglePassword() {
     if (this.passwordType === 'password') this.passwordType = 'text';

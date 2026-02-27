@@ -66,9 +66,7 @@ public class UsuarioServiceTest {
     this.cliente.setCorreo("test@gmail.com");
     this.cliente.setDni("12345678");
 
-    Rol rol = new Rol();
-    rol.setIdRol(1);
-    this.userModel.setRol(rol);
+    this.userModel.setIdRol(1);
 
     this.usuarioService = new UsuarioServiceImpl(usuarioRepository, clienteRepository, passwordEncoder);
   }

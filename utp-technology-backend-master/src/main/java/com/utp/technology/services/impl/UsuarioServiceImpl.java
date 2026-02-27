@@ -106,4 +106,33 @@ public class UsuarioServiceImpl implements UsuarioService {
     return this.passwordEncoder.matches(password, hashedPassword);
   }
 
+  @Override
+  public Usuario guardar(Usuario usuario) {
+    if (usuario.getClave() != null && !usuario.getClave().isEmpty()) {
+      usuario.setClave(this.passwordEncoder.encode(usuario.getClave()));
+    }
+    return this.usuarioRepository.save(usuario);
+  }
+
+  @Override
+  public Usuario editar(Integer id, Usuario usuario) {
+    Optional<Usuario> existingOpt = this.findById(id);
+    if (existingOpt.isEmpty()) {
+      throw new RuntimeException("Usuario no encontrado");
+    }
+    Usuario existing = existingOpt.get();
+    existing.setNombre(usuario.getNombre());
+    existing.setCorreo(usuario.getCorreo());
+    existing.setIdRol(usuario.getIdRol());
+    if (usuario.getClave() != null && !usuario.getClave().trim().isEmpty()) {
+      existing.setClave(this.passwordEncoder.encode(usuario.getClave()));
+    }
+    return this.usuarioRepository.save(existing);
+  }
+
+  @Override
+  public void eliminar(Integer id) {
+    this.usuarioRepository.deleteById(id);
+  }
+
 }

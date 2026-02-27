@@ -1,0 +1,125 @@
+﻿[33mÔØ»[39m Building...
+[32mÔ£ö[39m Building...
+Application bundle generation failed. [5.267 seconds]
+
+node.exe : 
+[1m[33m[33mÔû▓ [4
+3;33m[[43;30mWARNING
+[43;33m][0m 
+[1mTS-998113: 
+DatePipe is not used 
+within the template 
+of PagarPedidoModalCo
+mponent[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+En línea: 1 
+Carácter: 1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: ([1m[3   
+ 3m[33mÔ...r-com    
+piler][0m:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+
+    src/app/pages/sto
+re/pedidos/pagar-pedi
+do-modal/pagar-pedido
+-modal.ts:19:26:
+[37m      19 Ôöé   
+imports: 
+[CurrencyPipe, 
+[32mDatePipe[37m, 
+MatButtonModule, 
+MatDialogModu...
+         ÔòÁ         
+                  
+[32m~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;
+31m[[41;97mERROR[41
+;31m][0m 
+[1mTS2339: Property 
+'firebaseConfig' 
+does not exist on 
+type '{ apiUrl: 
+string; }'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/app.confi
+g.ts:33:55:
+[37m      33 Ôöé ...
+ovideFirebaseApp(() 
+=> initializeApp(envi
+ronment.[32mfirebase
+Config[37m)),
+         ÔòÁ         
+                     
+                     
+  [32m~~~~~~~~~~~~~~
+[0m
+
+
+[31mX [41;31m[[41;
+97mERROR[41;31m][0m
+ [1mNG1: Property 
+'id_producto' does 
+not exist on type 
+'PedidoDetailDto'. 
+Did you mean 
+'producto'?[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/sto
+re/pedidos/detalle-pe
+dido-modal/detalle-pe
+dido-modal.html:33:56
+:
+[37m      33 Ôöé 
+...      @for 
+(detalle of 
+data.detalles; track 
+detalle.[32mid_produ
+cto[37m) {
+         ÔòÁ         
+                     
+                     
+     
+[32m~~~~~~~~~~~[0m
+
+  Error occurs in 
+the template of 
+component DetallePedi
+doModalComponent.
+
+    src/app/pages/sto
+re/pedidos/detalle-pe
+dido-modal/detalle-pe
+dido-modal.ts:19:15:
+[37m      19 Ôöé   
+templateUrl: [32m'./
+detalle-pedido-modal.
+html'[37m,
+         ÔòÁ         
+       [32m~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+[0m
+
+[39m[22m

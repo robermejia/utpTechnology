@@ -8,4 +8,5 @@ export type LoggedUser = {
   id_rol: number;
   correo: string;
   nombre: string;
+  token_expiracion: string;
 };

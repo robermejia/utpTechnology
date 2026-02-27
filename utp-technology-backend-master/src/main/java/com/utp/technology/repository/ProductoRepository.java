@@ -44,7 +44,9 @@ public class ProductoRepository {
 
   public Producto save(Producto producto) {
     if (producto.getId() == null) {
-      firestore.collection(COLLECTION_NAME).add(producto);
+      // Generate unique integer ID based on time + random
+      producto.setId(Math.abs((int) System.currentTimeMillis() + (int) (Math.random() * 10000)));
+      firestore.collection(COLLECTION_NAME).document(String.valueOf(producto.getId())).set(producto);
     } else {
       firestore.collection(COLLECTION_NAME).document(String.valueOf(producto.getId())).set(producto);
     }

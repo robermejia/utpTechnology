@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import Swal from 'sweetalert2';
 import { MatIconModule } from '@angular/material/icon';
 import {
   MatPaginator,
@@ -48,7 +49,7 @@ export class ClientesList implements AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator)
   readonly paginator!: MatPaginator;
 
-  constructor(private clienteService: ClienteService) {}
+  constructor(private clienteService: ClienteService) { }
 
   ngAfterViewInit(): void {
     this.subscription.add(
@@ -102,6 +103,13 @@ export class ClientesList implements AfterViewInit, OnDestroy {
   }
 
   enDesarrollo(): void {
-    window.alert('🚧');
+    Swal.fire({
+      title: 'En Desarrollo',
+      text: 'Esta función estará disponible próximamente 🚧',
+      icon: 'info',
+      background: '#1e293b',
+      color: '#fff',
+      confirmButtonColor: '#3b82f6'
+    });
   }
 }

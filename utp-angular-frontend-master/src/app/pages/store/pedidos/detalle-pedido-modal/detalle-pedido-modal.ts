@@ -10,9 +10,12 @@ export type DetallePedidoModalData = {
   detalles: PedidoDetailDto[];
 };
 
+import { CommonModule } from '@angular/common';
+
 @Component({
+  standalone: true,
   selector: 'app-detalle-pedido-modal',
-  imports: [CurrencyPipe, DatePipe, MatButtonModule, MatDialogModule, MatIconModule],
+  imports: [CurrencyPipe, DatePipe, MatButtonModule, MatDialogModule, MatIconModule, CommonModule],
   templateUrl: './detalle-pedido-modal.html',
   styleUrl: './detalle-pedido-modal.css',
 })
