@@ -1,8 +1,9 @@
 package com.utp.technology.web.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import com.utp.technology.repository.UsuarioRepository;
 import java.util.Optional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,6 @@ import com.utp.technology.services.UsuarioService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/api/v1/auth")
 @SecurityRequirements()
@@ -33,10 +33,37 @@ public class AuthController {
 
   private final JWTService jwtService;
   private final UsuarioService usuarioService;
+  private final UsuarioRepository usuarioRepository;
+  private final PasswordEncoder passwordEncoder;
 
-  public AuthController(JWTService jwtService, UsuarioService usuarioService) {
+  public AuthController(JWTService jwtService, UsuarioService usuarioService, UsuarioRepository usuarioRepository,
+      PasswordEncoder passwordEncoder) {
     this.jwtService = jwtService;
     this.usuarioService = usuarioService;
+    this.usuarioRepository = usuarioRepository;
+    this.passwordEncoder = passwordEncoder;
+  }
+
+  @GetMapping("/init")
+  public ResponseEntity<String> initUsers() {
+    try {
+      createOrUpdateUser("admin@tienda.com", "Administrador", 1);
+      createOrUpdateUser("empleado@tienda.com", "Empleado de Prueba", 2);
+      createOrUpdateUser("cliente@tienda.com", "Cliente de Prueba", 3);
+      return ResponseEntity.ok("Usuarios inicializados correctamente. Admin role: 1");
+    } catch (Exception e) {
+      return ResponseEntity.status(500).body("Error: " + e.getMessage());
+    }
+  }
+
+  private void createOrUpdateUser(String email, String nombre, Integer rolId) throws Exception {
+    Optional<Usuario> existing = usuarioService.findByCorreo(email);
+    Usuario user = existing.orElse(new Usuario());
+    user.setCorreo(email);
+    user.setNombre(nombre);
+    user.setClave(passwordEncoder.encode("123456"));
+    user.setIdRol(rolId);
+    usuarioRepository.save(user);
   }
 
   @PostMapping("/sign-up")

@@ -1,5 +1,7 @@
 package com.utp.technology.model;
 
+import com.google.cloud.firestore.annotation.PropertyName;
+
 public class Usuario {
 
   private Integer id;
@@ -8,7 +10,8 @@ public class Usuario {
   private String clave;
   private Integer idRol;
 
-  public Usuario() {}
+  public Usuario() {
+  }
 
   public Usuario(Integer id, String nombre, String correo, String clave, Integer idRol) {
     this.id = id;
@@ -18,19 +21,45 @@ public class Usuario {
     this.idRol = idRol;
   }
 
-  public Integer getId() { return id; }
-  public void setId(Integer id) { this.id = id; }
+  public Integer getId() {
+    return id;
+  }
 
-  public String getNombre() { return nombre; }
-  public void setNombre(String nombre) { this.nombre = nombre; }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-  public String getCorreo() { return correo; }
-  public void setCorreo(String correo) { this.correo = correo; }
+  public String getNombre() {
+    return nombre;
+  }
 
-  public String getClave() { return clave; }
-  public void setClave(String clave) { this.clave = clave; }
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
 
-  public Integer getIdRol() { return idRol; }
-  public void setIdRol(Integer idRol) { this.idRol = idRol; }
+  public String getCorreo() {
+    return correo;
+  }
+
+  public void setCorreo(String correo) {
+    this.correo = correo;
+  }
+
+  public String getClave() {
+    return clave;
+  }
+
+  public void setClave(String clave) {
+    this.clave = clave;
+  }
+
+  @PropertyName("id_rol")
+  public Integer getIdRol() {
+    return idRol;
+  }
+
+  @PropertyName("id_rol")
+  public void setIdRol(Integer idRol) {
+    this.idRol = idRol;
+  }
 }
-
