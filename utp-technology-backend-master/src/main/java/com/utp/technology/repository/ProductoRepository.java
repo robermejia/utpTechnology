@@ -54,7 +54,11 @@ public class ProductoRepository {
   }
 
   public void deleteById(Integer id) throws InterruptedException, ExecutionException {
-    firestore.collection(COLLECTION_NAME).document(id.toString()).delete().get();
+    ApiFuture<QuerySnapshot> future = firestore.collection(COLLECTION_NAME).whereEqualTo("id", id).get();
+    List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+    if (!documents.isEmpty()) {
+      documents.get(0).getReference().delete().get();
+    }
   }
 
   public void delete(Producto producto) throws InterruptedException, ExecutionException {
@@ -64,10 +68,10 @@ public class ProductoRepository {
   }
 
   public Optional<Producto> findById(Integer id) throws ExecutionException, InterruptedException {
-    ApiFuture<DocumentSnapshot> future = firestore.collection(COLLECTION_NAME).document(String.valueOf(id)).get();
-    DocumentSnapshot document = future.get();
-    if (document.exists()) {
-      return Optional.ofNullable(document.toObject(Producto.class));
+    ApiFuture<QuerySnapshot> future = firestore.collection(COLLECTION_NAME).whereEqualTo("id", id).get();
+    List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+    if (!documents.isEmpty()) {
+      return Optional.ofNullable(documents.get(0).toObject(Producto.class));
     }
     return Optional.empty();
   }

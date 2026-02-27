@@ -77,7 +77,11 @@ export class ProductoModal implements OnInit {
   }
 
   guardar() {
-    if (this.formGroup.invalid) return;
+    if (this.formGroup.invalid) {
+      this.formGroup.markAllAsTouched();
+      return;
+    }
+
     let producto: ProductoStoreDto | ProductoUpdateDto;
     if (!!this.data.producto) {
       producto = {
