@@ -66,6 +66,7 @@ export class UsuarioModalComponent implements OnInit {
         if (this.isEditMode && this.data) {
             this.usuarioService.update(this.data.id, formData).subscribe({
                 next: (res) => {
+                    this.isLoading = false;
                     this.snackBar.open('Usuario actualizado exitosamente', 'Cerrar', { duration: 3000 });
                     this.dialogRef.close(true);
                 },

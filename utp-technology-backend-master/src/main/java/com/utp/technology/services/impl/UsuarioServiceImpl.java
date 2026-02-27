@@ -50,11 +50,7 @@ public class UsuarioServiceImpl implements UsuarioService {
   @Override
   public Optional<Usuario> findById(Integer id) {
     try {
-      // Note: FindById for Firestore would typically use document(id).get()
-      // For now, if we use numerical IDs, we'd need to query by "id" field
-      return this.usuarioRepository.findAll().stream()
-          .filter(u -> u.getId() != null && u.getId().equals(id))
-          .findFirst();
+      return this.usuarioRepository.findById(id);
     } catch (Exception e) {
       throw new RuntimeException("Error al buscar usuario por id", e);
     }

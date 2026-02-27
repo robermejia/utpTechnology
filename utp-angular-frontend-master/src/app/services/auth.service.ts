@@ -25,10 +25,6 @@ export class AuthService {
     return this.http.post<ApiResponse<any>>(`${this.apiUrl}/login`, { email, password }).pipe(
       map(res => {
         const user = res.data.user;
-        if (email === 'admin@tienda.com') {
-          user.id_rol = 1; // Force Admin role for visualization
-        }
-
         const loginResponse: LoginResponse = {
           access_token: res.data.accessToken,
           user: user
