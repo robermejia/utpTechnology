@@ -31,7 +31,8 @@
         </div>
 
         <mat-paginator class="!bg-transparent !text-slate-400"
-          [length]="resultsLength" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons>
+          [length]="resultsLength" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons
+          (page)="handlePageEvent($event)">
         </mat-paginator>
       </div>
 
@@ -40,11 +41,11 @@
         <table class="premium-table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Nombre Completo</th>
-              <th>Correo Electrónico</th>
-              <th>Nivel de Acceso</th>
-              <th class="text-center">Acciones</th>
+              <th class="!text-left w-20">ID</th>
+              <th class="!text-left">Nombre Completo</th>
+              <th class="!text-left">Correo Electrónico</th>
+              <th class="!text-left">Nivel de Acceso</th>
+              <th class="!text-center">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -62,8 +63,8 @@
               </td>
               <td>
                 <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" 
-                      [ngClass]="getRoleClass(element.idRol)">
-                  {{ getRoleName(element.idRol) }}
+                      [ngClass]="getRoleClass(element.id_rol)">
+                  {{ getRoleName(element.id_rol) }}
                 </span>
               </td>
               <td class="text-center">
@@ -101,11 +102,6 @@
         </table>
       </div>
 
-      <!-- Table Footer -->
-      <div class="p-4 bg-white/5 border-t border-white/10">
-        <mat-paginator class="!bg-transparent !text-slate-400"
-          [length]="resultsLength" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons>
-        </mat-paginator>
       </div>
     </div>
   </div>

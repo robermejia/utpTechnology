@@ -37,6 +37,8 @@ export class UsuariosListComponent implements AfterViewInit, OnDestroy {
     private readonly subscription = new Subscription();
     isLoading = true;
     resultsLength = 0;
+    pageSize = 10;
+    pageIndex = 0;
 
     columns = [
         'id',
@@ -68,9 +70,12 @@ export class UsuariosListComponent implements AfterViewInit, OnDestroy {
                 next: (res) => {
                     this.isLoading = false;
                     if (res.success && res.data) {
-                        this.dataSource.data = res.data;
-                        this.dataSource.paginator = this.paginator;
                         this.resultsLength = res.data.length;
+
+                        // Local pagination handling since backend doesn't paginate listAll yet
+                        const startIndex = this.pageIndex * this.pageSize;
+                        const endIndex = startIndex + this.pageSize;
+                        this.dataSource.data = res.data.slice(startIndex, endIndex);
                     }
                 },
                 error: (err) => {
@@ -79,6 +84,12 @@ export class UsuariosListComponent implements AfterViewInit, OnDestroy {
                 }
             })
         );
+    }
+
+    handlePageEvent(e: PageEvent) {
+        this.pageSize = e.pageSize;
+        this.pageIndex = e.pageIndex;
+        this.cargarUsuarios();
     }
 
     applyFilter(event: Event) {

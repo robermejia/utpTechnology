@@ -24,7 +24,8 @@
         </div>
 
         <mat-paginator class="!bg-transparent !text-slate-400"
-          [length]="resultsLength" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons>
+          [length]="resultsLength" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons
+          (page)="paginator.page.emit()">
         </mat-paginator>
       </div>
 
@@ -93,12 +94,6 @@
         </table>
       </div>
 
-      <!-- Table Footer -->
-      <div class="p-4 bg-white/5 border-t border-white/10">
-        <mat-paginator class="!bg-transparent !text-slate-400"
-          [length]="resultsLength" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons>
-        </mat-paginator>
-      </div>
     </div>
   </div>
 </div>
