@@ -2,6 +2,8 @@ package com.utp.technology.web.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import com.utp.technology.repository.UsuarioRepository;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -62,7 +64,7 @@ public class AuthController {
     user.setCorreo(email);
     user.setNombre(nombre);
     user.setClave(passwordEncoder.encode("123456"));
-    user.setIdRol(rolId);
+    user.setId_rol(rolId);
     usuarioRepository.save(user);
   }
 

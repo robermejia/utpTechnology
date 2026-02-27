@@ -16,7 +16,8 @@ public class UserLoginDto {
 
   private String nombre;
 
-  public UserLoginDto() {}
+  public UserLoginDto() {
+  }
 
   public UserLoginDto(Integer id, Integer idRol, String correo, String nombre) {
     this.id = id;
@@ -27,21 +28,40 @@ public class UserLoginDto {
 
   public UserLoginDto(Usuario usuario) {
     this.id = usuario.getId();
-    this.idRol = usuario.getIdRol();
+    this.idRol = usuario.getId_rol();
     this.correo = usuario.getCorreo();
     this.nombre = usuario.getNombre();
   }
 
-  public Integer getId() { return id; }
-  public void setId(Integer id) { this.id = id; }
+  public Integer getId() {
+    return id;
+  }
 
-  public Integer getIdRol() { return idRol; }
-  public void setIdRol(Integer idRol) { this.idRol = idRol; }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-  public String getCorreo() { return correo; }
-  public void setCorreo(String correo) { this.correo = correo; }
+  public Integer getIdRol() {
+    return idRol;
+  }
 
-  public String getNombre() { return nombre; }
-  public void setNombre(String nombre) { this.nombre = nombre; }
+  public void setIdRol(Integer idRol) {
+    this.idRol = idRol;
+  }
+
+  public String getCorreo() {
+    return correo;
+  }
+
+  public void setCorreo(String correo) {
+    this.correo = correo;
+  }
+
+  public String getNombre() {
+    return nombre;
+  }
+
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
 }
-

@@ -10,16 +10,16 @@ public class UserListDto {
   private String nombre;
   private String correo;
   @JsonProperty("id_rol")
-  private Integer idRol;
+  private Integer id_rol;
 
   public UserListDto() {
   }
 
-  public UserListDto(Integer id, String nombre, String correo, Integer idRol) {
+  public UserListDto(Integer id, String nombre, String correo, Integer id_rol) {
     this.id = id;
     this.nombre = nombre;
     this.correo = correo;
-    this.idRol = idRol;
+    this.id_rol = id_rol;
   }
 
   public Integer getId() {
@@ -46,11 +46,11 @@ public class UserListDto {
     this.correo = correo;
   }
 
-  public Integer getIdRol() {
-    return idRol;
+  public Integer getId_rol() {
+    return id_rol;
   }
 
-  public void setIdRol(Integer idRol) {
-    this.idRol = idRol;
+  public void setId_rol(Integer id_rol) {
+    this.id_rol = id_rol;
   }
 }

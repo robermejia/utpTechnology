@@ -36,8 +36,8 @@ public class CustomUserDetailsService implements UserDetailsService {
       Usuario usuario = usuarioOpt.get();
 
       String roleName = "USER";
-      if (usuario.getIdRol() != null) {
-        Rol rol = rolRepository.findById(usuario.getIdRol()).orElse(null);
+      if (usuario.getId_rol() != null) {
+        Rol rol = rolRepository.findById(usuario.getId_rol()).orElse(null);
         if (rol != null) {
           roleName = rol.getNombreRol();
         }

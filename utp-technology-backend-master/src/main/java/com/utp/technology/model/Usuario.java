@@ -1,24 +1,22 @@
 package com.utp.technology.model;
 
-import com.google.cloud.firestore.annotation.PropertyName;
-
 public class Usuario {
 
   private Integer id;
   private String nombre;
   private String correo;
   private String clave;
-  private Integer idRol;
+  private Integer id_rol;
 
   public Usuario() {
   }
 
-  public Usuario(Integer id, String nombre, String correo, String clave, Integer idRol) {
+  public Usuario(Integer id, String nombre, String correo, String clave, Integer id_rol) {
     this.id = id;
     this.nombre = nombre;
     this.correo = correo;
     this.clave = clave;
-    this.idRol = idRol;
+    this.id_rol = id_rol;
   }
 
   public Integer getId() {
@@ -53,13 +51,11 @@ public class Usuario {
     this.clave = clave;
   }
 
-  @PropertyName("id_rol")
-  public Integer getIdRol() {
-    return idRol;
+  public Integer getId_rol() {
+    return id_rol;
   }
 
-  @PropertyName("id_rol")
-  public void setIdRol(Integer idRol) {
-    this.idRol = idRol;
+  public void setId_rol(Integer id_rol) {
+    this.id_rol = id_rol;
   }
 }

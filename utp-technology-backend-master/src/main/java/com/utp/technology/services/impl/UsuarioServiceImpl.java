@@ -38,7 +38,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             dto.setId(u.getId());
             dto.setNombre(u.getNombre());
             dto.setCorreo(u.getCorreo());
-            dto.setIdRol(u.getIdRol());
+            dto.setId_rol(u.getId_rol());
             return dto;
           })
           .collect(Collectors.toList());
@@ -76,7 +76,7 @@ public class UsuarioServiceImpl implements UsuarioService {
       usuario.setNombre(data.getNombre());
       usuario.setCorreo(data.getEmail());
       usuario.setClave(this.passwordEncoder.encode(data.getPassword()));
-      usuario.setIdRol(3); // Default USER role
+      usuario.setId_rol(3); // Default USER role
 
       usuario = this.usuarioRepository.save(usuario);
 
