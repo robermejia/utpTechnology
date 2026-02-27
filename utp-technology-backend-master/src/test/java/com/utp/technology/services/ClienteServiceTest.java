@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Collections;
 import java.util.List;
+import com.utp.technology.model.Cliente;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
 import com.utp.technology.web.dto.cliente.ListClienteDto;
-import com.utp.technology.web.dto.cliente.ListClienteDtoImpl;
 import com.utp.technology.repository.ClienteRepository;
 import com.utp.technology.services.impl.ClienteServiceImpl;
 
@@ -39,7 +39,7 @@ public class ClienteServiceTest {
 
   @BeforeEach
   void setUp() {
-    var clienteTest = new ListClienteDtoImpl();
+    var clienteTest = new ListClienteDto();
     clienteTest.setId(1);
     clienteTest.setNombre("");
     clienteTest.setApellido("");
@@ -60,7 +60,7 @@ public class ClienteServiceTest {
     Page<ListClienteDto> clientePage = new PageImpl<>(clientes, pageable, 1);
 
     // Al llamar al a función listCliente, se devolvera la página de arriba
-    when(clienteRepository.listCliente(eq(searchTerm), any(Pageable.class))).thenReturn(clientePage);
+    when(clienteRepository.findAll()).thenReturn(Collections.singletonList(new Cliente()));
 
     Page<ListClienteDto> resultPage = clienteService.listCliente(searchTerm, pageable);
 
@@ -70,7 +70,7 @@ public class ClienteServiceTest {
     assertThat(resultPage.getContent()).hasSize(1);
 
     // Validando que el método fue correctamente invocado
-    verify(clienteRepository, times(1)).listCliente(eq(searchTerm), any(Pageable.class));
+    verify(clienteRepository, times(1)).findAll();
   }
 
 }

@@ -28,7 +28,7 @@
 
   <!-- Products Grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-    @for (product of products; track product.id) {
+    @for (product of products; track product.id || $index) {
     <div class="glass-card group flex flex-col h-full overflow-hidden">
       <!-- Image Container -->
       <div class="relative aspect-[4/5] overflow-hidden">

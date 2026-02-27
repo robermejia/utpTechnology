@@ -1,7 +1,7 @@
 export const environment = {
-    apiUrl: 'https://utptechnology.onrender.com/api/v1',
+    apiUrl: 'https://utptechnology-backend.onrender.com/api/v1',
     firebaseConfig: {
-        apiKey: "AIzaSyCu7XWP1IwudAhQPWhkTE2HTXbVNDUTVg0",
+        apiKey: "AIzaSyBkR4VfJnkle1Lovd1Sly2AkePKFHyq46k",
         authDomain: "utptechnology.firebaseapp.com",
         projectId: "utptechnology",
         storageBucket: "utptechnology.firebasestorage.app",

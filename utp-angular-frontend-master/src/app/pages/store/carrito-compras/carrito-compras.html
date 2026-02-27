@@ -28,7 +28,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (element of dataSource.data; track element.product.id) {
+            @for (element of dataSource.data; track element.product.id || $index) {
             <tr>
               <td>
                 <img [src]="element.product.imagen" [attr.alt]="element.product.nombre" 

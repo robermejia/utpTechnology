@@ -49,7 +49,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (element of dataSource.data; track element.id) {
+            @for (element of dataSource.data; track element.id || $index) {
             <tr class="group hover:bg-white/5 transition-colors">
               <td class="font-bold text-blue-400">#{{ element.id }}</td>
               <td>

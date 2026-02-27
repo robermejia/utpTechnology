@@ -87,13 +87,13 @@ public class UsuarioServiceTest {
   @Test
   void testFindById() throws Exception {
     Integer userId = 1;
-    when(usuarioRepository.findById(eq(userId))).thenReturn(Optional.of(userModel));
+    when(usuarioRepository.findAll()).thenReturn(Collections.singletonList(userModel));
 
     Optional<Usuario> usuarioOpt = usuarioService.findById(userId);
 
     assertThat(usuarioOpt.isPresent()).isEqualTo(true);
 
-    verify(usuarioRepository, times(1)).findById(userId);
+    verify(usuarioRepository, times(1)).findAll();
   }
 
   @Test
