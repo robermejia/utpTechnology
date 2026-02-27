@@ -3,7 +3,7 @@ package com.utp.technology.web.dto.user;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({ "id", "nombre", "correo", "idRol" })
+@JsonPropertyOrder({ "id", "nombre", "correo", "id_rol" })
 public class UserListDto {
 
   private Integer id;

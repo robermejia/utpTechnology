@@ -10,7 +10,7 @@ public class UserLoginDto {
   private Integer id;
 
   @JsonProperty("id_rol")
-  private Integer idRol;
+  private Integer id_rol;
 
   private String correo;
 
@@ -19,16 +19,16 @@ public class UserLoginDto {
   public UserLoginDto() {
   }
 
-  public UserLoginDto(Integer id, Integer idRol, String correo, String nombre) {
+  public UserLoginDto(Integer id, Integer id_rol, String correo, String nombre) {
     this.id = id;
-    this.idRol = idRol;
+    this.id_rol = id_rol;
     this.correo = correo;
     this.nombre = nombre;
   }
 
   public UserLoginDto(Usuario usuario) {
     this.id = usuario.getId();
-    this.idRol = usuario.getId_rol();
+    this.id_rol = usuario.getId_rol();
     this.correo = usuario.getCorreo();
     this.nombre = usuario.getNombre();
   }
@@ -41,12 +41,12 @@ public class UserLoginDto {
     this.id = id;
   }
 
-  public Integer getIdRol() {
-    return idRol;
+  public Integer getId_rol() {
+    return id_rol;
   }
 
-  public void setIdRol(Integer idRol) {
-    this.idRol = idRol;
+  public void setId_rol(Integer id_rol) {
+    this.id_rol = id_rol;
   }
 
   public String getCorreo() {

@@ -119,7 +119,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     Usuario existing = existingOpt.get();
     existing.setNombre(usuario.getNombre());
     existing.setCorreo(usuario.getCorreo());
-    existing.setIdRol(usuario.getIdRol());
+    existing.setId_rol(usuario.getId_rol());
     if (usuario.getClave() != null && !usuario.getClave().trim().isEmpty()) {
       existing.setClave(this.passwordEncoder.encode(usuario.getClave()));
     }
