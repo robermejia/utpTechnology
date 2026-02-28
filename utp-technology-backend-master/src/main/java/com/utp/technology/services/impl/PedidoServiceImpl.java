@@ -18,7 +18,6 @@ import com.utp.technology.web.dto.pedido.StorePedidoDto;
 import com.utp.technology.model.Comprobante;
 import com.utp.technology.model.DetallePedido;
 import com.utp.technology.model.Pedido;
-import com.utp.technology.model.Producto;
 import com.utp.technology.repository.ClienteRepository;
 import com.utp.technology.repository.ComprobanteRepository;
 import com.utp.technology.repository.DetallePedidoRepository;
@@ -143,9 +142,9 @@ public class PedidoServiceImpl implements PedidoService {
     List<DetallePedido> detalles = this.detallePedidoRepository.findByIdPedido(pedidoId);
     return detalles.stream().map(d -> {
       ListDetallePedidoDto dto = new ListDetallePedidoDto();
-      dto.setIdProducto(d.getIdProducto());
+      dto.setProducto_id(d.getIdProducto());
       dto.setCantidad(d.getCantidad());
-      dto.setPrecioUnitario(d.getPrecioUnitario());
+      dto.setPrecio_unitario(d.getPrecioUnitario());
       dto.setSubtotal(d.getSubtotal());
 
       try {

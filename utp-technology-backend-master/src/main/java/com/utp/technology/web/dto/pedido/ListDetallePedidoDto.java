@@ -1,32 +1,29 @@
 package com.utp.technology.web.dto.pedido;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({ "id", "producto_id", "producto", "imagenProducto", "cantidad", "precio_unitario", "subtotal" })
 public class ListDetallePedidoDto {
 
   private Integer id;
-  @JsonProperty("producto_id")
-  private Integer idProducto;
+  private Integer producto_id;
   private String producto;
   private String imagenProducto;
   private Integer cantidad;
-  @JsonProperty("precio_unitario")
-  private Double precioUnitario;
+  private Double precio_unitario;
   private Double subtotal;
 
   public ListDetallePedidoDto() {
   }
 
-  public ListDetallePedidoDto(Integer id, Integer idProducto, String producto, String imagenProducto, Integer cantidad,
-      Double precioUnitario, Double subtotal) {
+  public ListDetallePedidoDto(Integer id, Integer producto_id, String producto, String imagenProducto, Integer cantidad,
+      Double precio_unitario, Double subtotal) {
     this.id = id;
-    this.idProducto = idProducto;
+    this.producto_id = producto_id;
     this.producto = producto;
     this.imagenProducto = imagenProducto;
     this.cantidad = cantidad;
-    this.precioUnitario = precioUnitario;
+    this.precio_unitario = precio_unitario;
     this.subtotal = subtotal;
   }
 
@@ -38,12 +35,12 @@ public class ListDetallePedidoDto {
     this.id = id;
   }
 
-  public Integer getIdProducto() {
-    return idProducto;
+  public Integer getProducto_id() {
+    return producto_id;
   }
 
-  public void setIdProducto(Integer idProducto) {
-    this.idProducto = idProducto;
+  public void setProducto_id(Integer producto_id) {
+    this.producto_id = producto_id;
   }
 
   public String getProducto() {
@@ -70,12 +67,12 @@ public class ListDetallePedidoDto {
     this.cantidad = cantidad;
   }
 
-  public Double getPrecioUnitario() {
-    return precioUnitario;
+  public Double getPrecio_unitario() {
+    return precio_unitario;
   }
 
-  public void setPrecioUnitario(Double precioUnitario) {
-    this.precioUnitario = precioUnitario;
+  public void setPrecio_unitario(Double precio_unitario) {
+    this.precio_unitario = precio_unitario;
   }
 
   public Double getSubtotal() {

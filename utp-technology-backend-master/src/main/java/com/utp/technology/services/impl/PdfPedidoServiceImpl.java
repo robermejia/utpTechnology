@@ -13,7 +13,6 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
-import com.utp.technology.model.Cliente;
 import com.utp.technology.repository.ClienteRepository;
 import com.utp.technology.services.PdfPedidoService;
 import com.utp.technology.services.PedidoService;
@@ -88,7 +87,8 @@ public class PdfPedidoServiceImpl implements PdfPedidoService {
                 return new String[] {
                         currentIndex.toString(), // #
                         detalle.getProducto(), // Producto
-                        "S/ " + (detalle.getPrecioUnitario() != null ? detalle.getPrecioUnitario().toString() : "0.0"), // Precio
+                        "S/ " + (detalle.getPrecio_unitario() != null ? detalle.getPrecio_unitario().toString()
+                                : "0.0"), // Precio
                         (detalle.getCantidad() != null ? detalle.getCantidad().toString() : "0"), // Cantidad
                         "S/ " + (detalle.getSubtotal() != null ? detalle.getSubtotal().toString() : "0.0"), // Total
                                                                                                             // detalle
