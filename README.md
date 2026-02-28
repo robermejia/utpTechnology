@@ -17,35 +17,27 @@ This is a premium, full-stack application transformed with a state-of-the-art **
 - **UI/UX:** Premium Glassmorphism, Material Icons, 'Outfit' Typography
 - **Security:** JWT Authentication (Firebase Auth ready)
 
-## 🧩 Estructura de la base de datos
+## 🧩 Colecciones de la Base de Datos (Firebase Firestore)
 
-La base de datos `utp_bd` contiene las siguientes tablas:
+La base de datos actual está orquestada en la nube mediante **Firebase Firestore (NoSQL)** y usa las siguientes colecciones:
 
 - `rol`: Roles de usuario (Administrador, Vendedor, Cliente)
-- `usuarios`: Usuarios con clave encriptada
-- `clientes`: Información de clientes vinculados a usuarios
-- `productos`: Lista de productos con imagen, precio y stock
-- `pedidos`: Registra compras realizadas
-- `detalles_pedido`: Detalles de cada producto dentro de un pedido
-- `comprobantes`: Documento generado por cada pedido (boleta/factura)
+- `usuarios`: Autenticación y datos de personal gestionado.
+- `clientes`: Información de clientes vinculados a compras.
+- `productos`: Catálogo principal de productos con imagen, precio y stock.
+- `pedidos`: Compilación o carrito de compras confirmadas.
+- `detalles_pedido`: Desglose exacto de cada producto dentro de un pedido.
+- `comprobantes`: Instancias físicas y comprobantes generados para ser descargados.
 
-> El script `ScriptUtpTechnology.sql` crea e inserta datos de prueba automáticamente.
+---
 
-## 🚀 Cómo ejecutar el proyecto
+## 🚀 Despliegue en Producción
 
-### 1. Base de datos
+El proyecto completo se encuentra alojado y compilado en los servidores web de Render, ofreciendo una experiencia funcional para los roles administrativos y de clientes.
 
-- Crear una base de datos MySQL ejecutando el script:
-
-
-ScriptUtpTechnology.sql
-
+### 🌐 Vínculo de la Aplicación en Vivo:
+👉 **[https://utptechnology-frontend.onrender.com](https://utptechnology-frontend.onrender.com)**
 
 <center>
-<img src="https://img001.prntscr.com/file/img001/wiUNYs6QSBGwD0eriFXKxg.png" style="width: 100% ; aspect-ratio:16/9">
+  <img src="https://i.ibb.co/nM7BtWcs/screencapture-utptechnology-frontend-onrender-productos-2026-02-27-23-45-19.png" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
 </center>
-
-
-### 2. Despliegue
-- http://137.184.30.74:8081/
-- http://137.184.30.74:8080/swagger-ui/index.html
