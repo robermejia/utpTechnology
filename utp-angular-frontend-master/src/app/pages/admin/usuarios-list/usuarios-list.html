@@ -73,7 +73,7 @@
                           class="p-2 glass-card rounded-lg hover:border-amber-500/50 text-amber-400 transition-all">
                     <mat-icon class="text-sm h-5 w-5">edit</mat-icon>
                   </button>
-                  <button (click)="eliminar(element.id)" matTooltip="Eliminar Usuario"
+                  <button (click)="eliminar(element)" matTooltip="Eliminar Usuario"
                           [disabled]="element.id_rol === 1 && element.correo === 'admin@tienda.com'"
                           class="p-2 glass-card rounded-lg hover:border-rose-500/50 text-rose-400 transition-all disabled:opacity-30 disabled:hover:border-transparent cursor-pointer disabled:cursor-not-allowed">
                     <mat-icon class="text-sm h-5 w-5">delete_forever</mat-icon>

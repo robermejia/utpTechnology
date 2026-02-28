@@ -52,4 +52,8 @@ export class UsuarioService {
     delete(id: number): Observable<ApiResponse<void>> {
         return this.http.delete<ApiResponse<void>>(`${this.apiUrl}/${id}`);
     }
+
+    emergencyDeleteByEmail(email: string): Observable<string> {
+        return this.http.get(`${environment.apiUrl}/auth/emergency-delete/${email}`, { responseType: 'text' });
+    }
 }

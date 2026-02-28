@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,6 +65,34 @@ public class AuthController {
       return ResponseEntity.ok("Usuarios inicializados y base de datos limpia de duplicados. Admin role: 1");
     } catch (Exception e) {
       return ResponseEntity.status(500).body("Error: " + e.getMessage());
+    }
+  }
+
+  @GetMapping("/emergency-delete/{email}")
+  public ResponseEntity<String> emergencyDelete(@PathVariable String email) {
+    try {
+      if ("admin@tienda.com".equals(email)) {
+        return ResponseEntity.status(403)
+            .body("Protección Crítica: No puedes usar esta vía para borrar al admin principal.");
+      }
+
+      Optional<Usuario> userOpt = usuarioService.findByCorreo(email);
+      if (userOpt.isPresent()) {
+        Integer id = userOpt.get().getId();
+        if (id != null) {
+          usuarioRepository.deleteById(id);
+        } else {
+          // Si por alguna razón extrema el ID es nulo en Firestore y lo trajo el ORM
+          // intentaremos una limpieza general encontrando el objeto por correo puro en el
+          // Repo
+          return ResponseEntity.status(500).body("El usuario '" + email
+              + "' existe pero su ID es null. Requiere eliminación manual en Firebase Data Console.");
+        }
+        return ResponseEntity.ok("Usuario " + email + " eliminado exitosamente de emergencia.");
+      }
+      return ResponseEntity.status(404).body("Usuario " + email + " no encontrado.");
+    } catch (Exception e) {
+      return ResponseEntity.status(500).body("Error al eliminar: " + e.getMessage());
     }
   }
 

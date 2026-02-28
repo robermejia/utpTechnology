@@ -141,18 +141,33 @@ export class UsuariosListComponent implements AfterViewInit, OnDestroy {
         });
     }
 
-    eliminar(id: number) {
-        if (confirm('¿Está seguro que desea eliminar este usuario? Esa acción no se puede deshacer.')) {
-            this.usuarioService.delete(id).subscribe({
-                next: (res) => {
-                    this.snackBar.open('Usuario eliminado exitosamente', 'Cerrar', { duration: 3000 });
-                    this.cargarUsuarios();
-                },
-                error: (err) => {
-                    console.error(err);
-                    this.snackBar.open('Error al eliminar usuario', 'Cerrar', { duration: 3000 });
-                }
-            });
+    eliminar(usuario: UserListDto) {
+        if (confirm(`¿Está seguro que desea eliminar a este usuario? Esa acción no se puede deshacer.`)) {
+            if (usuario.id != null) {
+                // Borrado normal por ID
+                this.usuarioService.delete(usuario.id).subscribe({
+                    next: (res) => {
+                        this.snackBar.open('Usuario eliminado exitosamente', 'Cerrar', { duration: 3000 });
+                        this.cargarUsuarios();
+                    },
+                    error: (err) => {
+                        console.error(err);
+                        this.snackBar.open('Error al eliminar usuario', 'Cerrar', { duration: 3000 });
+                    }
+                });
+            } else {
+                // Borrado de emergencia por correo (ID nulo o corrupto)
+                this.usuarioService.emergencyDeleteByEmail(usuario.correo).subscribe({
+                    next: (res) => {
+                        this.snackBar.open('Usuario corrupto eliminado exitosamente', 'Cerrar', { duration: 3000 });
+                        this.cargarUsuarios();
+                    },
+                    error: (err) => {
+                        console.error(err);
+                        this.snackBar.open('Error al limpiar usuario corrupto', 'Cerrar', { duration: 3000 });
+                    }
+                });
+            }
         }
     }
 
