@@ -195,8 +195,8 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
       ProductoModalData,
       ProductoModalDataClosed
     >(ProductoModal, {
-      width: '95vw',
-      maxWidth: '380px',
+      width: '450px',
+      maxWidth: '100vw',
       data: {},
     });
 
@@ -242,8 +242,8 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
       ProductoModalData,
       ProductoModalDataClosed
     >(ProductoModal, {
-      width: '95vw',
-      maxWidth: '380px',
+      width: '450px',
+      maxWidth: '100vw',
       data: {
         producto,
       },

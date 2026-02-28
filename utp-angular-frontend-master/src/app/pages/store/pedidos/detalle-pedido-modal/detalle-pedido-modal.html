@@ -37,7 +37,7 @@
             </td>
             <td class="text-center font-bold text-blue-400">{{ detalle.cantidad }}</td>
             <td class="text-right text-slate-300">
-              {{ (detalle.subtotal / detalle.cantidad) | currency: 'PEN': 'S/' }}
+              {{ detalle.precio_unitario | currency: 'PEN': 'S/' }}
             </td>
             <td class="text-right font-bold text-white">
               {{ detalle.subtotal | currency: 'PEN': 'S/' }}
