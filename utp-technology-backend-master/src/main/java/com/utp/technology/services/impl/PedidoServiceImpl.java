@@ -21,6 +21,7 @@ import com.utp.technology.model.Pedido;
 import com.utp.technology.model.Producto;
 import com.utp.technology.repository.ClienteRepository;
 import com.utp.technology.repository.ComprobanteRepository;
+import com.utp.technology.repository.DetallePedidoRepository;
 import com.utp.technology.repository.PedidoRepository;
 import com.utp.technology.repository.ProductoRepository;
 import com.utp.technology.security.JwtUsuario;
@@ -33,13 +34,16 @@ public class PedidoServiceImpl implements PedidoService {
   private final ComprobanteRepository comprobanteRepository;
   private final PedidoRepository pedidoRepository;
   private final ProductoRepository productoRepository;
+  private final DetallePedidoRepository detallePedidoRepository;
 
   public PedidoServiceImpl(ClienteRepository clienteRepository, ComprobanteRepository comprobanteRepository,
-      PedidoRepository pedidoRepository, ProductoRepository productoRepository) {
+      PedidoRepository pedidoRepository, ProductoRepository productoRepository,
+      DetallePedidoRepository detallePedidoRepository) {
     this.clienteRepository = clienteRepository;
     this.comprobanteRepository = comprobanteRepository;
     this.pedidoRepository = pedidoRepository;
     this.productoRepository = productoRepository;
+    this.detallePedidoRepository = detallePedidoRepository;
   }
 
   @Override
@@ -126,7 +130,7 @@ public class PedidoServiceImpl implements PedidoService {
           detalle.setCantidad(d.getCantidad());
           detalle.setPrecioUnitario(d.getPrecioUnitario());
           detalle.setSubtotal(d.getSubtotal());
-          // TODO: Save logic for DetallePedido if repository is added later
+          this.detallePedidoRepository.save(detalle);
         }
       }
     } catch (Exception e) {
@@ -136,7 +140,22 @@ public class PedidoServiceImpl implements PedidoService {
 
   @Override
   public List<ListDetallePedidoDto> listPedidoDetalles(Integer pedidoId) {
-    return List.of();
+    List<DetallePedido> detalles = this.detallePedidoRepository.findByIdPedido(pedidoId);
+    return detalles.stream().map(d -> {
+      ListDetallePedidoDto dto = new ListDetallePedidoDto();
+      dto.setIdProducto(d.getIdProducto());
+      dto.setCantidad(d.getCantidad());
+      dto.setPrecioUnitario(d.getPrecioUnitario());
+      dto.setSubtotal(d.getSubtotal());
+
+      try {
+        var prodOpt = this.productoRepository.findById(d.getIdProducto());
+        dto.setProducto(prodOpt.isPresent() ? prodOpt.get().getNombre() : "Producto Desconocido");
+      } catch (Exception e) {
+        dto.setProducto("Desconocido");
+      }
+      return dto;
+    }).collect(Collectors.toList());
   }
 
   @Override

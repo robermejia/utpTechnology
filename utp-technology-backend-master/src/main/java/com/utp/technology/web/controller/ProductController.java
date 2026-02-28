@@ -32,14 +32,18 @@ import com.utp.technology.services.ProductoService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.validation.Valid;
 
+import com.utp.technology.security.AuthService;
+
 @RestController
 @RequestMapping("/api/v1/producto")
 public class ProductController {
 
   private final ProductoService productoService;
+  private final AuthService authService;
 
-  public ProductController(ProductoService productoService) {
+  public ProductController(ProductoService productoService, AuthService authService) {
     this.productoService = productoService;
+    this.authService = authService;
   }
 
   @GetMapping
@@ -68,6 +72,10 @@ public class ProductController {
   public ResponseEntity<ApiResponse<Producto>> store(@Valid @RequestBody StoreProductDTO request,
       BindingResult bindingResult) {
 
+    Integer rolId = this.authService.getCurrentUser() != null ? this.authService.getCurrentUser().getRolId() : 3;
+    if (!(rolId.equals(1) || rolId.equals(2)))
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiResponse.badRequest(null, "No Autorizado"));
+
     if (bindingResult.hasErrors()) {
       Map<String, String> errors = new HashMap<>();
       for (FieldError error : bindingResult.getFieldErrors()) {
@@ -84,6 +92,10 @@ public class ProductController {
 
   @DeleteMapping("/{id}")
   public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Integer id) {
+    Integer rolId = this.authService.getCurrentUser() != null ? this.authService.getCurrentUser().getRolId() : 3;
+    if (!(rolId.equals(1) || rolId.equals(2)))
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiResponse.badRequest(null, "No Autorizado"));
+
     Optional<Producto> productoOpt = this.productoService.findById(id);
 
     if (productoOpt.isEmpty()) {
@@ -97,6 +109,10 @@ public class ProductController {
   @PutMapping("/{id}")
   public ResponseEntity<ApiResponse<Producto>> update(@PathVariable Integer id,
       @Valid @RequestBody StoreProductDTO request, BindingResult bindingResult) {
+
+    Integer rolId = this.authService.getCurrentUser() != null ? this.authService.getCurrentUser().getRolId() : 3;
+    if (!(rolId.equals(1) || rolId.equals(2)))
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiResponse.badRequest(null, "No Autorizado"));
 
     if (bindingResult.hasErrors()) {
       Map<String, String> errors = new HashMap<>();

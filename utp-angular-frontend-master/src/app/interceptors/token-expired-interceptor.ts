@@ -9,7 +9,8 @@ export const tokenExpiredInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 403) {
+      // 401 significa Token Expirado o Credentials defectuosas.  403 es Falta de permisos (Forbidden).
+      if (error.status === 401) {
         authService.logout();
         router.navigate(['/login']);
       }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.utp.technology.web.dto.user.UserListDto;
 import com.utp.technology.web.response.ApiResponse;
 import com.utp.technology.model.Usuario;
+import com.utp.technology.security.AuthService;
 import com.utp.technology.services.UsuarioService;
 
 @RestController
@@ -24,18 +25,24 @@ import com.utp.technology.services.UsuarioService;
 public class UsuarioController {
 
   private final UsuarioService usuarioService;
+  private final AuthService authService;
 
-  public UsuarioController(UsuarioService usuarioService) {
+  public UsuarioController(UsuarioService usuarioService, AuthService authService) {
     this.usuarioService = usuarioService;
+    this.authService = authService;
   }
 
   @GetMapping
   public ResponseEntity<ApiResponse<List<UserListDto>>> index() {
+    if (!this.authService.getCurrentUser().getRolId().equals(1))
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiResponse.badRequest(null, "No Autorizado"));
     return ResponseEntity.ok().body(ApiResponse.success(this.usuarioService.listAll()));
   }
 
   @GetMapping("/{id}")
   public ResponseEntity<ApiResponse<Usuario>> show(@PathVariable() Integer id) {
+    if (!this.authService.getCurrentUser().getRolId().equals(1))
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiResponse.badRequest(null, "No Autorizado"));
     Optional<Usuario> usuario = this.usuarioService.findById(id);
 
     if (usuario.isEmpty()) {
@@ -47,18 +54,24 @@ public class UsuarioController {
 
   @PostMapping
   public ResponseEntity<ApiResponse<Usuario>> store(@RequestBody Usuario usuario) {
+    if (!this.authService.getCurrentUser().getRolId().equals(1))
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiResponse.badRequest(null, "No Autorizado"));
     return ResponseEntity.ok()
         .body(ApiResponse.success(this.usuarioService.guardar(usuario), "Usuario creado exitosamente"));
   }
 
   @PutMapping("/{id}")
   public ResponseEntity<ApiResponse<Usuario>> update(@PathVariable Integer id, @RequestBody Usuario usuario) {
+    if (!this.authService.getCurrentUser().getRolId().equals(1))
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiResponse.badRequest(null, "No Autorizado"));
     return ResponseEntity.ok()
         .body(ApiResponse.success(this.usuarioService.editar(id, usuario), "Usuario actualizado exitosamente"));
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Integer id) {
+    if (!this.authService.getCurrentUser().getRolId().equals(1))
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiResponse.badRequest(null, "No Autorizado"));
     this.usuarioService.eliminar(id);
     return ResponseEntity.ok().body(ApiResponse.success(null, "Usuario eliminado"));
   }
