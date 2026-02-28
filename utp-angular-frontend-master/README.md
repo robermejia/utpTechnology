@@ -1,59 +1,68 @@
-# UtpTechnology
+# 🛒 UTP Technology - E-Commerce Platform
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 
-## Development server
+Bienvenido al repositorio del Frontend de **UTP Technology**, una plataforma web moderna de comercio electrónico diseñada para la venta y gestión de componentes tecnológicos.
 
-To start a local development server, run:
+🚀 **Enlace de Despliegue en Vivo:** [https://utptechnology-frontend.onrender.com/](https://utptechnology-frontend.onrender.com/)
+
+---
+
+## ✨ Características Principales
+
+*   **🛍️ Tienda y Carrito de Compras**: Catálogo de productos interactivo para clientes, con gestión de carrito y sistema de pago simulado.
+*   **🔐 Autenticación y Autorización (JWT)**: Sistema de roles jerárquicos (Administrador, Empleado, Cliente) con protección de rutas dinámicas.
+*   **📊 Dashboard Administrativo**: Panel de control exclusivo para la gestión completa de inventario (CRUD de productos reactivo) y administración de personal/usuarios.
+*   **🧾 Historial y Facturación (PDF)**: Revisión gráfica de pedidos y generación dinámica de comprobantes de pago descargables (Sincronizado con API Java).
+*   **📱 Diseño Responsivo Premium (UI/UX)**: Interfaz construida bajo conceptos de *Glassmorphism* optimizada para escritorio y móviles.
+
+## 🛠️ Tecnologías Utilizadas
+
+*   **Framework Core:** Angular 17+
+*   **Estilos y Maquetado:** Tailwind CSS & Variables Nativas SCSS
+*   **Componentes UI:** Angular Material
+*   **Alertas e Interacciones:** SweetAlert2
+*   **Arquitectura de Red:** `HttpClient` Modificado con Interceptores (Auth Bearer Token).
+
+## 🔗 Integración y Arquitectura
+
+Este frontal reacciona en tiempo real a la API diseñada especialmente para él:
+*   **Backend:** Spring Boot (Java 17) + Spring Security (JWT)
+*   **Base de Datos en la Nube:** Google Firebase (Firestore)
+
+---
+
+## 💻 Instalación Local
+
+Si deseas correr este proyecto en tu entorno de desarrollo, sigue estos rápidos pasos:
+
+1. **Abre tu Terminal y sitúate en la raíz del proyecto:**
+   ```bash
+   cd utp-angular-frontend-master
+   ```
+
+2. **Instala las dependencias de Node.js:**
+   ```bash
+   npm install
+   ```
+
+3. **Ejecuta el servidor de desarrollo:**
+   ```bash
+   npm start
+   # o bien: ng serve
+   ```
+   *La aplicación estará instantáneamente disponible en `http://localhost:4200/`. El servidor posee Hot-Reload para refrescarse automáticamente si haces cambios en el código.*
+
+## ⚙️ Compilación para Producción
+
+Para generar los archivos estáticos de producción (minificados y optimizados para la web):
 
 ```bash
-ng serve
+npm run build
 ```
+Este comando generará la carpeta `dist/` en el proyecto, la cual contiene todo el código compilado indispensable para el despliegue en plataformas de Hosting como Render.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+🛡️ *Desarrollado para el Proyecto Integrador Tecnológico.*
