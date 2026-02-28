@@ -3,6 +3,11 @@ import { superAdminGuard } from '../../guards/super-admin.guard';
 
 export const adminRoutes: Routes = [
   {
+    path: '',
+    redirectTo: 'pedidos',
+    pathMatch: 'full'
+  },
+  {
     path: 'productos',
     loadComponent: () =>
       import('./producto-list/producto-list').then(

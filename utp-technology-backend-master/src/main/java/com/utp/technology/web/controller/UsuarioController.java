@@ -72,6 +72,11 @@ public class UsuarioController {
   public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Integer id) {
     if (!this.authService.getCurrentUser().getRolId().equals(1))
       return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiResponse.badRequest(null, "No Autorizado"));
+
+    if (this.authService.getCurrentUser().getId().equals(id))
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+          .body(ApiResponse.badRequest(null, "No puedes eliminar tu propia cuenta de Administrador."));
+
     this.usuarioService.eliminar(id);
     return ResponseEntity.ok().body(ApiResponse.success(null, "Usuario eliminado"));
   }
