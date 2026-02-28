@@ -1,19 +1,19 @@
 <div class="container mx-auto px-6 py-10">
   <div class="max-w-7xl mx-auto">
     <!-- Page Header -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-10">
-      <div class="flex items-center gap-4">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-6 md:mb-10 text-center md:text-left">
+      <div class="flex flex-col sm:flex-row items-center gap-4">
         <div class="p-3 glass-card rounded-2xl border-purple-500/30">
           <mat-icon class="text-purple-400 text-3xl h-8 w-8">manage_accounts</mat-icon>
         </div>
         <div>
-          <h1 class="text-4xl font-bold text-white tracking-tight">Gestión de Usuarios</h1>
-          <p class="text-slate-400">Control de acceso y roles del sistema</p>
+          <h1 class="text-2xl md:text-4xl font-bold text-white tracking-tight">Gestión de Usuarios</h1>
+          <p class="text-sm md:text-base text-slate-400">Control de acceso y roles del sistema</p>
         </div>
       </div>
 
       <button (click)="abrirModal()"
-              class="btn-premium px-8 py-4 text-lg" style="background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);">
+              class="btn-premium w-full md:w-auto px-6 py-3 md:px-8 md:py-4 text-base md:text-lg flex justify-center items-center gap-2" style="background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);">
         <mat-icon>admin_panel_settings</mat-icon>
         <span>Nuevo Administrador / Usuario</span>
       </button>
@@ -41,40 +41,40 @@
         <table class="premium-table">
           <thead>
             <tr>
-              <th class="!text-left w-20">ID</th>
-              <th class="!text-left">Nombre Completo</th>
-              <th class="!text-left">Correo Electrónico</th>
-              <th class="!text-left">Nivel de Acceso</th>
-              <th class="!text-center">Acciones</th>
+              <th class="!text-left w-20 whitespace-nowrap">ID</th>
+              <th class="!text-left whitespace-nowrap">Nombre Completo</th>
+              <th class="!text-left whitespace-nowrap">Correo Electrónico</th>
+              <th class="!text-left whitespace-nowrap">Nivel de Acceso</th>
+              <th class="!text-center whitespace-nowrap">Acciones</th>
             </tr>
           </thead>
           <tbody>
             @for (element of dataSource.data; track element.id || $index) {
             <tr class="group hover:bg-white/5 transition-colors">
-              <td class="font-bold text-purple-400">#{{ element.id }}</td>
-              <td>
+              <td class="font-bold text-purple-400 whitespace-nowrap">#{{ element.id }}</td>
+              <td class="whitespace-nowrap">
                 <span class="font-bold text-white">{{ element.nombre }}</span>
               </td>
-              <td>
+              <td class="whitespace-nowrap">
                 <div class="flex items-center gap-2 text-slate-300">
                   <mat-icon class="text-xs h-4 w-4">mail</mat-icon>
                   {{ element.correo }}
                 </div>
               </td>
-              <td>
+              <td class="whitespace-nowrap">
                 <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" 
-                      [ngClass]="getRoleClass(element.idRol)">
-                  {{ getRoleName(element.idRol) }}
+                      [ngClass]="getRoleClass(element.id_rol)">
+                  {{ getRoleName(element.id_rol) }}
                 </span>
               </td>
-              <td class="text-center">
+              <td class="text-center whitespace-nowrap">
                 <div class="flex justify-center gap-3">
                   <button (click)="abrirModal(element)" matTooltip="Editar Roles / Permisos"
                           class="p-2 glass-card rounded-lg hover:border-amber-500/50 text-amber-400 transition-all">
                     <mat-icon class="text-sm h-5 w-5">edit</mat-icon>
                   </button>
                   <button (click)="eliminar(element.id)" matTooltip="Eliminar Usuario"
-                          [disabled]="element.idRol === 1 && element.correo === 'admin@tienda.com'"
+                          [disabled]="element.id_rol === 1 && element.correo === 'admin@tienda.com'"
                           class="p-2 glass-card rounded-lg hover:border-rose-500/50 text-rose-400 transition-all disabled:opacity-30 disabled:hover:border-transparent cursor-pointer disabled:cursor-not-allowed">
                     <mat-icon class="text-sm h-5 w-5">delete_forever</mat-icon>
                   </button>

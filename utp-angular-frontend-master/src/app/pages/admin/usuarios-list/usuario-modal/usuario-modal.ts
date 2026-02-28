@@ -49,10 +49,14 @@ export class UsuarioModalComponent implements OnInit {
     ngOnInit(): void {
         this.usuarioForm = this.fb.group({
             nombre: [this.data?.nombre || '', [Validators.required, Validators.minLength(3)]],
-            correo: [this.data?.correo || '', [Validators.required, Validators.email]],
+            correo: [{ value: this.data?.correo || '', disabled: this.isSuperAdmin() }, [Validators.required, Validators.email]],
             clave: ['', this.isEditMode ? [] : [Validators.required, Validators.minLength(6)]],
-            id_rol: [this.data?.id_rol || 3, Validators.required]
+            id_rol: [{ value: this.data?.id_rol || 3, disabled: this.isSuperAdmin() }, Validators.required]
         });
+    }
+
+    private isSuperAdmin(): boolean {
+        return this.isEditMode && this.data?.correo === 'admin@tienda.com' && this.data?.id_rol === 1;
     }
 
     guardar(): void {
@@ -61,7 +65,7 @@ export class UsuarioModalComponent implements OnInit {
         }
 
         this.isLoading = true;
-        const formData: Usuario = this.usuarioForm.value;
+        const formData: Usuario = this.usuarioForm.getRawValue();
 
         if (this.isEditMode && this.data) {
             this.usuarioService.update(this.data.id, formData).subscribe({

@@ -1,5 +1,7 @@
 package com.utp.technology.model;
 
+import com.google.cloud.firestore.annotation.PropertyName;
+
 public class Usuario {
 
   private Integer id;
@@ -51,10 +53,12 @@ public class Usuario {
     this.clave = clave;
   }
 
+  @PropertyName("id_rol")
   public Integer getId_rol() {
     return id_rol;
   }
 
+  @PropertyName("id_rol")
   public void setId_rol(Integer id_rol) {
     this.id_rol = id_rol;
   }

@@ -49,18 +49,34 @@ public class AuthController {
   @GetMapping("/init")
   public ResponseEntity<String> initUsers() {
     try {
-      createOrUpdateUser("admin@tienda.com", "Administrador", 1);
-      createOrUpdateUser("empleado@tienda.com", "Empleado de Prueba", 2);
-      createOrUpdateUser("cliente@tienda.com", "Cliente de Prueba", 3);
-      return ResponseEntity.ok("Usuarios inicializados correctamente. Admin role: 1");
+      // Limpiar posibles duplicados y usuarios antiguos de prueba
+      cleanAndInit("admin@tienda.com", "Administrador", 1);
+      cleanAndInit("empleado@tienda.com", "Empleado de Prueba", 2);
+      cleanAndInit("cliente@tienda.com", "Cliente de Prueba", 3);
+
+      // Limpiar el correo admin@empresa.com que el usuario reportó como duplicado
+      Optional<Usuario> extraAdmin = usuarioService.findByCorreo("admin@empresa.com");
+      while (extraAdmin.isPresent()) {
+        usuarioRepository.deleteById(extraAdmin.get().getId());
+        extraAdmin = usuarioService.findByCorreo("admin@empresa.com");
+      }
+
+      return ResponseEntity.ok("Usuarios inicializados y base de datos limpia de duplicados. Admin role: 1");
     } catch (Exception e) {
       return ResponseEntity.status(500).body("Error: " + e.getMessage());
     }
   }
 
-  private void createOrUpdateUser(String email, String nombre, Integer rolId) throws Exception {
+  private void cleanAndInit(String email, String nombre, Integer rolId) throws Exception {
+    // Buscar y eliminar CUALQUIER usuario con este correo para empezar de cero
     Optional<Usuario> existing = usuarioService.findByCorreo(email);
-    Usuario user = existing.orElse(new Usuario());
+    while (existing.isPresent()) {
+      usuarioRepository.deleteById(existing.get().getId());
+      existing = usuarioService.findByCorreo(email);
+    }
+
+    // Crear el usuario limpio
+    Usuario user = new Usuario();
     user.setCorreo(email);
     user.setNombre(nombre);
     user.setClave(passwordEncoder.encode("123456"));

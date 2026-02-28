@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe, CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -56,11 +56,14 @@ export class UsuariosListComponent implements AfterViewInit, OnDestroy {
     constructor(
         private usuarioService: UsuarioService,
         private dialog: MatDialog,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private cd: ChangeDetectorRef
     ) { }
 
     ngAfterViewInit(): void {
-        this.cargarUsuarios();
+        setTimeout(() => {
+            this.cargarUsuarios();
+        }, 0);
     }
 
     cargarUsuarios() {
@@ -76,11 +79,15 @@ export class UsuariosListComponent implements AfterViewInit, OnDestroy {
                         const startIndex = this.pageIndex * this.pageSize;
                         const endIndex = startIndex + this.pageSize;
                         this.dataSource.data = res.data.slice(startIndex, endIndex);
+
+                        // Forzar detección de cambios para que la tabla se muestre inmediatamente
+                        this.cd.detectChanges();
                     }
                 },
                 error: (err) => {
                     this.isLoading = false;
                     console.error(err);
+                    this.cd.detectChanges();
                 }
             })
         );
@@ -121,7 +128,8 @@ export class UsuariosListComponent implements AfterViewInit, OnDestroy {
 
     abrirModal(usuario?: UserListDto) {
         const dialogRef = this.dialog.open(UsuarioModalComponent, {
-            width: '500px',
+            width: '95vw',
+            maxWidth: '500px',
             data: usuario ? { ...usuario } : null,
             panelClass: 'glass-dialog'
         });

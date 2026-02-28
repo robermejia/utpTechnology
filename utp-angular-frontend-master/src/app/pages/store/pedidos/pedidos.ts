@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe, CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -55,10 +55,17 @@ export class PedidosStoreComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private pedidoService: PedidoService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.initPage();
+    }, 0);
+  }
+
+  private initPage(): void {
     this.subscription.add(
       this.paginator.page
         .pipe(
@@ -73,7 +80,13 @@ export class PedidosStoreComponent implements AfterViewInit, OnDestroy {
             this.isLoading = false;
             this.resultsLength = res.totalSize;
             this.dataSource.data = res.data;
+            this.cd.detectChanges();
           },
+          error: (err) => {
+            this.isLoading = false;
+            console.error(err);
+            this.cd.detectChanges();
+          }
         })
     );
   }
@@ -114,6 +127,8 @@ export class PedidosStoreComponent implements AfterViewInit, OnDestroy {
         this.dialog
           .open<PagarPedidoModalComponent>(PagarPedidoModalComponent, {
             data: { pedido, detalles: res.data },
+            width: '95vw',
+            maxWidth: '500px'
           })
           .afterClosed()
           .subscribe((res) => {
@@ -158,7 +173,11 @@ export class PedidosStoreComponent implements AfterViewInit, OnDestroy {
       next: (res) => {
         this.dialog.open<DetallePedidoModalComponent, DetallePedidoModalData>(
           DetallePedidoModalComponent,
-          { data: { pedido, detalles: res.data } }
+          {
+            data: { pedido, detalles: res.data },
+            width: '95vw',
+            maxWidth: '600px'
+          }
         );
       },
     });

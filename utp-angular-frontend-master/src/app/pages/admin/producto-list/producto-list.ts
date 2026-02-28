@@ -7,6 +7,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  ChangeDetectorRef
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -76,7 +77,8 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -104,7 +106,13 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
             this.isLoading = false;
             this.resultsLength = res.totalSize;
             this.dataSource.data = res.data;
+            this.cd.detectChanges();
           },
+          error: (err) => {
+            this.isLoading = false;
+            console.error(err);
+            this.cd.detectChanges();
+          }
         })
     );
   }
@@ -175,6 +183,8 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
       ProductoModalData,
       ProductoModalDataClosed
     >(ProductoModal, {
+      width: '95vw',
+      maxWidth: '500px',
       data: {},
     });
 
@@ -220,6 +230,8 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
       ProductoModalData,
       ProductoModalDataClosed
     >(ProductoModal, {
+      width: '95vw',
+      maxWidth: '500px',
       data: {
         producto,
       },

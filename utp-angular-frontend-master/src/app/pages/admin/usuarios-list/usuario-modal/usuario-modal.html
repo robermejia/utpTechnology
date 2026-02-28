@@ -69,10 +69,10 @@
       <div>
         <label class="block text-sm font-medium text-slate-300 mb-2">Nivel de Acceso (Jerarquía)</label>
         <div class="relative group">
-          <select formControlName="idRol" 
+          <select formControlName="id_rol" 
                   class="w-full appearance-none bg-slate-900/50 border border-white/10 rounded-xl py-3 pl-4 pr-10 text-white focus:outline-none focus:border-purple-500/50 transition-colors cursor-pointer">
             @for (rol of roles; track rol.id) {
-              <option [value]="rol.id" class="bg-slate-800 text-white">{{ rol.name }}</option>
+              <option [ngValue]="rol.id" class="bg-slate-800 text-white">{{ rol.name }}</option>
             }
           </select>
           <mat-icon class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none group-focus-within:text-purple-400">expand_more</mat-icon>

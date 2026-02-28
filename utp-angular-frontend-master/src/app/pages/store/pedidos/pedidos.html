@@ -3,13 +3,13 @@
 <div class="container mx-auto px-6 pt-[100px] pb-10">
   <div class="max-w-6xl mx-auto">
     <!-- Page Header -->
-    <div class="flex items-center gap-4 mb-10">
+    <div class="flex items-center gap-4 mb-6 md:mb-10 text-center sm:text-left">
       <div class="p-3 glass-card rounded-2xl border-blue-500/30">
         <mat-icon class="text-blue-400 text-3xl h-8 w-8">history</mat-icon>
       </div>
       <div>
-        <h1 class="text-4xl font-bold text-white tracking-tight">Mis Pedidos</h1>
-        <p class="text-slate-400">Historial de tus compras y estado de envíos</p>
+        <h1 class="text-2xl md:text-4xl font-bold text-white tracking-tight">Mis Pedidos</h1>
+        <p class="text-sm md:text-base text-slate-400">Historial de tus compras y estado de envíos</p>
       </div>
     </div>
 
@@ -19,19 +19,19 @@
         <table class="premium-table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Fecha</th>
-              <th>Estado</th>
-              <th class="text-right">Total</th>
-              <th class="text-center">Acciones</th>
+              <th class="whitespace-nowrap">ID</th>
+              <th class="whitespace-nowrap">Fecha</th>
+              <th class="whitespace-nowrap">Estado</th>
+              <th class="text-right whitespace-nowrap">Total</th>
+              <th class="text-center whitespace-nowrap">Acciones</th>
             </tr>
           </thead>
           <tbody>
             @for (element of dataSource.data; track $index) {
             <tr class="group hover:bg-white/5 transition-colors">
-              <td class="font-bold text-blue-400">#{{ element.id || $index + 1 }}</td>
-              <td class="text-slate-300">{{ element.fecha }}</td>
-              <td>
+              <td class="font-bold text-blue-400 whitespace-nowrap">#{{ element.id || $index + 1 }}</td>
+              <td class="text-slate-300 whitespace-nowrap">{{ element.fecha }}</td>
+              <td class="whitespace-nowrap">
                 <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
                       [ngClass]="{
                         'bg-blue-500/20 text-blue-400 border border-blue-500/30': element.estado === 'En proceso' || element.estado === 'EN PROCESO' || element.estado === 'PAGADO',
@@ -42,10 +42,10 @@
                   {{ element.estado }}
                 </span>
               </td>
-              <td class="text-right font-bold text-white text-lg">
+              <td class="text-right font-bold text-white text-lg whitespace-nowrap">
                 {{ element.total | currency: 'PEN': 'S/' }}
               </td>
-              <td class="text-center">
+              <td class="text-center whitespace-nowrap">
                 <div class="flex justify-center gap-2">
                   @if (element.estado === 'En proceso' || element.estado === 'EN PROCESO' || element.estado === 'PAGADO') {
                   <button (click)="descargarComprobante(element)" matTooltip="Descargar comprobante"

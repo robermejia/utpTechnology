@@ -1,19 +1,19 @@
 <div class="container mx-auto px-6 py-10">
   <div class="max-w-7xl mx-auto">
     <!-- Page Header -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-10">
-      <div class="flex items-center gap-4">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-6 md:mb-10 text-center md:text-left">
+      <div class="flex flex-col sm:flex-row items-center gap-4">
         <div class="p-3 glass-card rounded-2xl border-emerald-500/30">
           <mat-icon class="text-emerald-400 text-3xl h-8 w-8">inventory_2</mat-icon>
         </div>
         <div>
-          <h1 class="text-4xl font-bold text-white tracking-tight">Gestión de Productos</h1>
-          <p class="text-slate-400">Administra tu inventario, precios y stock en tiempo real</p>
+          <h1 class="text-2xl md:text-4xl font-bold text-white tracking-tight">Gestión de Productos</h1>
+          <p class="text-sm md:text-base text-slate-400">Administra tu inventario, precios y stock en tiempo real</p>
         </div>
       </div>
 
       <button (click)="nuevoProducto()" 
-              class="btn-premium btn-primary-glow px-8 py-4 text-lg">
+              class="btn-premium btn-primary-glow w-full md:w-auto px-6 py-3 md:px-8 md:py-4 text-base md:text-lg flex justify-center items-center gap-2">
         <mat-icon>add_circle</mat-icon>
         <span>Nuevo Producto</span>
       </button>
@@ -41,35 +41,35 @@
         <table class="premium-table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Imagen</th>
-              <th>Nombre del Producto</th>
-              <th class="text-right">Precio</th>
-              <th class="text-center">Stock</th>
-              <th class="text-center">Acciones</th>
+              <th class="whitespace-nowrap">ID</th>
+              <th class="whitespace-nowrap">Imagen</th>
+              <th class="whitespace-nowrap">Nombre del Producto</th>
+              <th class="text-right whitespace-nowrap">Precio</th>
+              <th class="text-center whitespace-nowrap">Stock</th>
+              <th class="text-center whitespace-nowrap">Acciones</th>
             </tr>
           </thead>
           <tbody>
             @for (element of dataSource.data; track element.id || $index) {
             <tr class="group hover:bg-white/5 transition-colors">
-              <td class="font-bold text-blue-400">#{{ element.id }}</td>
-              <td>
+              <td class="font-bold text-blue-400 whitespace-nowrap">#{{ element.id }}</td>
+              <td class="whitespace-nowrap">
                 <img [src]="element.imagen" alt="{{ element.nombre }}" 
                      class="w-16 h-16 object-cover rounded-lg border border-white/10" />
               </td>
-              <td>
+              <td class="whitespace-nowrap">
                 <div class="font-bold text-white">{{ element.nombre }}</div>
               </td>
-              <td class="text-right font-bold text-emerald-400">
+              <td class="text-right font-bold text-emerald-400 whitespace-nowrap">
                 {{ element.precio | currency: 'PEN': 'S/' }}
               </td>
-              <td class="text-center">
+              <td class="text-center whitespace-nowrap">
                 <span class="px-3 py-1 rounded-full text-xs font-bold"
                       [ngClass]="element.stock < 10 ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'">
                   {{ element.stock }}
                 </span>
               </td>
-              <td class="text-center">
+              <td class="text-center whitespace-nowrap">
                 <div class="flex justify-center gap-3">
                   <button (click)="editarProducto(element)" matTooltip="Editar"
                           class="p-2 glass-card rounded-lg hover:border-amber-500/50 text-amber-400 transition-all">

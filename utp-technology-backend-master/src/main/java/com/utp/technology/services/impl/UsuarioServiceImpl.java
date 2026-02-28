@@ -117,6 +117,15 @@ public class UsuarioServiceImpl implements UsuarioService {
       throw new RuntimeException("Usuario no encontrado");
     }
     Usuario existing = existingOpt.get();
+
+    // Súper Administrador Protegido
+    if ("admin@tienda.com".equals(existing.getCorreo()) && existing.getId_rol() != null && existing.getId_rol() == 1) {
+      if (!"admin@tienda.com".equals(usuario.getCorreo())
+          || (usuario.getId_rol() != null && usuario.getId_rol() != 1)) {
+        throw new RuntimeException("No se permite modificar el correo o nivel de acceso del Administrador Principal.");
+      }
+    }
+
     existing.setNombre(usuario.getNombre());
     existing.setCorreo(usuario.getCorreo());
     existing.setId_rol(usuario.getId_rol());
@@ -128,6 +137,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 
   @Override
   public void eliminar(Integer id) {
+    Optional<Usuario> existingOpt = this.findById(id);
+    if (existingOpt.isPresent()) {
+      Usuario existing = existingOpt.get();
+      if ("admin@tienda.com".equals(existing.getCorreo()) && existing.getId_rol() != null
+          && existing.getId_rol() == 1) {
+        throw new RuntimeException("Protección Crítica: No se permite eliminar al Administrador Principal.");
+      }
+    }
     this.usuarioRepository.deleteById(id);
   }
 
