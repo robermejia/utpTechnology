@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Login {
   form = new FormGroup({
-    email: new FormControl('admin@tienda.com', [
+    email: new FormControl('empleado@tienda.com', [
       Validators.required,
       Validators.email,
     ]),

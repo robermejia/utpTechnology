@@ -89,6 +89,11 @@ export class CarritoCompras implements OnInit {
     this.loadData();
   }
 
+  removeProduct(product: CarritoProduct) {
+    this.carritoComprasService.removeProduct(product.product);
+    this.loadData();
+  }
+
   comprar() {
     let dataPedido: StorePedidoDto = {
       metodoPago: 'Tarjeta de Crédito',

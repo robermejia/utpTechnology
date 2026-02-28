@@ -163,15 +163,27 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
       color: '#fff'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.productoService.deleteProducto(id).subscribe(() => {
-          Swal.fire({
-            title: '¡Eliminado!',
-            text: 'El producto ha sido eliminado exitosamente.',
-            icon: 'success',
-            background: '#1e293b',
-            color: '#fff'
-          });
-          this.emitPageEvent();
+        this.productoService.deleteProducto(id).subscribe({
+          next: () => {
+            Swal.fire({
+              title: '¡Eliminado!',
+              text: 'El producto ha sido eliminado exitosamente.',
+              icon: 'success',
+              background: '#1e293b',
+              color: '#fff'
+            });
+            this.emitPageEvent();
+          },
+          error: (err) => {
+            console.error(err);
+            Swal.fire({
+              title: 'Error de Eliminación',
+              text: 'No se pudo eliminar el producto. ' + (err.error?.message || err.message),
+              icon: 'error',
+              background: '#1e293b',
+              color: '#fff'
+            });
+          }
         });
       }
     });
@@ -184,7 +196,7 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
       ProductoModalDataClosed
     >(ProductoModal, {
       width: '95vw',
-      maxWidth: '500px',
+      maxWidth: '380px',
       data: {},
     });
 
@@ -231,7 +243,7 @@ export class ProductoListComponent implements OnInit, AfterViewInit, OnDestroy {
       ProductoModalDataClosed
     >(ProductoModal, {
       width: '95vw',
-      maxWidth: '500px',
+      maxWidth: '380px',
       data: {
         producto,
       },
