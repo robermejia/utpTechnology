@@ -3,6 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import Swal from 'sweetalert2';
 import { ListPedidoDto, PedidoDetailDto } from '../../../../models/pedido';
 import { PedidoService } from '../../../../services/pedido.service';
 
@@ -30,9 +31,17 @@ export class PagarPedidoModalComponent {
   public pagar() {
     this.pedidoService.pagar(this.data.pedido.id).subscribe({
       next: (res) => {
-        window.alert(res.message);
-        this.dialogRef.close(true);
+        Swal.fire({
+          title: '¡Pago Exitoso!',
+          text: res.message,
+          icon: 'success',
+          background: '#1e293b',
+          color: '#fff',
+          confirmButtonColor: '#3b82f6'
+        });
+        this.dialogRef.close();
       },
+      error: (err) => { }
     });
   }
 }

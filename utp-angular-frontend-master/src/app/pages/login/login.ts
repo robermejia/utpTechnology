@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 import { CommonModule } from '@angular/common';
 
@@ -54,7 +55,14 @@ export class Login {
       error: (ex) => {
         if (ex instanceof HttpErrorResponse) {
           if (!!ex.error.message) {
-            // window.alert(ex.error.message);
+            Swal.fire({
+              title: 'Error de Acceso',
+              text: ex.error.message,
+              icon: 'error',
+              background: '#1e293b',
+              color: '#fff',
+              confirmButtonColor: '#ef4444'
+            });
           }
         }
       },
