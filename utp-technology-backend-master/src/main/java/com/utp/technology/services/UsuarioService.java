@@ -25,4 +25,6 @@ public interface UsuarioService {
 
   public void eliminar(Integer id);
 
+  public int cleanAnomalies();
+
 }

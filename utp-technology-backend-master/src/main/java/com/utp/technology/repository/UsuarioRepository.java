@@ -74,4 +74,17 @@ public class UsuarioRepository {
                 .map(doc -> doc.toObject(Usuario.class))
                 .collect(java.util.stream.Collectors.toList());
     }
+
+    public int cleanAnomalies() throws ExecutionException, InterruptedException {
+        int deleted = 0;
+        java.util.List<QueryDocumentSnapshot> docs = firestore.collection(COLLECTION_NAME).get().get().getDocuments();
+        for (QueryDocumentSnapshot doc : docs) {
+            Usuario u = doc.toObject(Usuario.class);
+            if (u.getId() == null && "admin@tienda.com".equals(u.getCorreo())) {
+                doc.getReference().delete().get();
+                deleted++;
+            }
+        }
+        return deleted;
+    }
 }

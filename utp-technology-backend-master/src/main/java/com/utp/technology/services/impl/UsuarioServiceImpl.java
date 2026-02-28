@@ -148,4 +148,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     this.usuarioRepository.deleteById(id);
   }
 
+  @Override
+  public int cleanAnomalies() {
+    try {
+      return this.usuarioRepository.cleanAnomalies();
+    } catch (Exception e) {
+      throw new RuntimeException("Error limpiando anomalías", e);
+    }
+  }
+
 }
