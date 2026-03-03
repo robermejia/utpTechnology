@@ -160,3 +160,9 @@
     font-size: 1.1rem;
   }
 }
+
+@media (min-width: 961px) {
+  .mobile-menu-links {
+    display: none;
+  }
+}
