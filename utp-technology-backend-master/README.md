@@ -7,7 +7,9 @@
 
 Bienvenido al repositorio Backend de **UTP Technology**, una robusta API RESTful construida en Java encargada de procesar toda la lógica de negocio, seguridad y persistencia de datos del E-Commerce.
 
-🚀 **Enlace del Frontend en Vivo:** [https://utptechnology-frontend.onrender.com/](https://utptechnology-frontend.onrender.com/)
+🚀 **Enlace del Frontend en Vivo:** [https://utptechnology-frontend-4n8y.onrender.com/](https://utptechnology-frontend-4n8y.onrender.com/)
+
+> **Nota Técnica sobre el Backend (Latencia de Cold Start):** Las instancias gratuitas en Render hibernan tras inactividad. La reconexión con Firestore y el arranque de Spring Boot en la primera petición del día pueden demorar en cargar la base de datos (~30 a 50s) debido a la reactivación del servidor y establecimiento de canales TCP; luego la conexión funcionará velozmente en modo de tiempo real.
 
 ---
 

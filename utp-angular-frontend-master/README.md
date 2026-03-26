@@ -6,7 +6,9 @@
 
 Bienvenido al repositorio del Frontend de **UTP Technology**, una plataforma web moderna de comercio electrónico diseñada para la venta y gestión de componentes tecnológicos.
 
-🚀 **Enlace de Despliegue en Vivo:** [https://utptechnology-frontend.onrender.com/](https://utptechnology-frontend.onrender.com/)
+🚀 **Enlace de Despliegue en Vivo:** [https://utptechnology-frontend-4n8y.onrender.com/](https://utptechnology-frontend-4n8y.onrender.com/)
+
+> **Aviso de Latencia por Cold Start:** El backend de pruebas de esta aplicación y su gestor de base de datos distribuidos operan en clusters gratuitos sujetos a una política de hibernación (*spin-down*). Al efectuar la petición inicial, se notará un retraso técnico justificado mientras la base de datos se rearma y levanta las conexiones en la nube; de allí en adelante la experiencia es instantánea.
 
 ---
 

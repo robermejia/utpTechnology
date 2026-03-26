@@ -36,7 +36,9 @@ La base de datos actual está orquestada en la nube mediante **Firebase Firestor
 El proyecto completo se encuentra alojado y compilado en los servidores web de Render, ofreciendo una experiencia funcional para los roles administrativos y de clientes.
 
 ### 🌐 Vínculo de la Aplicación en Vivo:
-👉 **[https://utptechnology-frontend.onrender.com](https://utptechnology-frontend.onrender.com)**
+👉 **[https://utptechnology-frontend-4n8y.onrender.com](https://utptechnology-frontend-4n8y.onrender.com)**
+
+> **Nota Técnica de Despliegue (Cold Start):** Debido a que la infraestructura del backend (Spring Boot) está alojada en una instancia gratuita (Free Tier) de Render sin persistencia activa en memoria (spin-down temporal por inactividad), los flujos de inicialización del `ApplicationContext` y la reconexión con el pool de conexiones de Firebase Firestore pueden demorar un aproximado de 30 a 60 segundos **únicamente en la primera petición del día o tras 15 minutos de inactividad**. Subsecuentemente, los tiempos de latencia (RTT) en la base de datos volverán a la normalidad operativa en tiempo real.
 
 <center>
   <img src="https://i.ibb.co/nM7BtWcs/screencapture-utptechnology-frontend-onrender-productos-2026-02-27-23-45-19.png" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
